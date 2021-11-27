@@ -1,0 +1,6 @@
+#bodyWrapper{
+    background-color: rgb(141, 141, 141);
+    padding: 2vh 2vw;
+    min-height:calc(100vh - 72px - 103px);
+    
+}

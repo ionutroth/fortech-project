@@ -1,0 +1,48 @@
+#gameShopPage{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    background-color: gray;
+}
+
+#gameShopPage >:first-child{
+
+    font-size: 20px;
+    padding:5px 0px 5px 10px;
+    background-color: rgb(118, 118, 209);
+   color: white;
+}
+
+#gameShopPage >:first-child>span{
+    color: gold;
+}
+
+#gameShopPage >:last-child{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+#gameShopPage>:first-child>button{
+    border-style: none;
+    padding:7px;
+    margin:0px 10px;;
+    color: white;
+}
+
+#sortCommonItems{
+    background-color: green;
+}
+
+#sortRareItems{
+    background-color: blue;
+}
+
+#sortEpicItems{
+    background-color: purple;
+}
+
+#sortLegendaryItems{
+    background-color: rgb(158, 104, 2);
+}

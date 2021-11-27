@@ -1,0 +1,40 @@
+.gameInventory>:first-child>div:hover{
+    color: rgb(196, 196, 196);
+    background-color: rgb(57, 57, 172);
+    border-color: rgb(165, 164, 164);
+}
+
+.gameInventory:last-child{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;;
+}
+
+.InventoryItem{
+    width:100px;
+    height:300px;
+    background-color: aqua;
+}
+
+#gameInventory{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    height:500px;
+    background-color: white;
+}
+
+#gameInventoryCol{
+    height:100%
+}
+
+#gameInventoryItemDiv{
+    overflow: scroll;
+    width:75%;
+    display: flex;
+    flex-direction: row;
+
+}
+#gameInventoryToolbar{
+    width:25%
+}

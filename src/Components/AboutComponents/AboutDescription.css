@@ -1,0 +1,20 @@
+#descriptionTitle{
+    font-size: 5vw;
+}
+
+#aboutDescription{
+    margin-top:5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    width:70%;
+    display: flex;
+    margin: auto;
+    padding-top:3vw
+}
+
+#descriptionImage{
+    width:20vw;
+    height:20vw;
+    margin-top:10px;
+    margin-bottom:10px;
+}

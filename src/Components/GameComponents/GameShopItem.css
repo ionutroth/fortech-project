@@ -1,0 +1,39 @@
+.gameShopItem{
+    width:150px;
+    height: 200px;
+    transition: all 0.3s ease-in;
+    transform-origin: center center;
+    position:relative;
+    cursor: pointer;
+    margin:10px;
+}
+
+.gameShopItem:hover{
+    transform: scale(1.05);
+}
+
+
+.gameShopItem > div >img{
+    width:100px;
+}
+
+.gameShopItem > div{
+    width:130px;
+    height:180px;
+    margin:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameShopItem > div > h5{
+    margin:10px 0px 10px 0px;
+    text-align: center;
+    color: white;
+} 
+
+.gameShopItem> div> p{
+    color: gold;
+    vertical-align: middle;
+}

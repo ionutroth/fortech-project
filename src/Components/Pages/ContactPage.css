@@ -1,0 +1,50 @@
+.contactRow{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+}
+
+.contactColumnLeft{
+    display:flex;
+    flex-direction: column;
+    width:50%;
+    align-items: flex-end;
+    height: 100%;
+    object-fit: scale-down;
+}
+
+#contactProfilePicture{
+    width:155px;
+    height:155px;
+    margin-right: 3%;
+}
+
+.contactColumnRight h4{
+    margin:0px;
+}
+
+.contactColumnRight{
+    display:flex;
+    flex-direction: column;
+    width:50%
+}
+
+#contactPlatformColumn{
+    position:relative;
+}
+
+.contactImage{
+    opacity:1;
+    position:absolute;
+    margin-right: 3%;
+    margin-top: 3%;
+    width:155px;
+    height:155px;
+    transition: 2s all;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+#contactBodyWrapper{
+    width:100%;
+}

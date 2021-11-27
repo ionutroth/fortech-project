@@ -1,0 +1,133 @@
+#table{
+    display: flex;
+    width:60vw;
+    height:60vw;
+    margin:auto;
+    flex-direction: column;
+    position:relative
+}
+
+#table>:first-child{
+    position:absolute;
+    width:30vw;
+    height:30vw;
+    background-color: rgb(177, 177, 177);
+    top:15vw;
+    left:15vw;
+    z-index:10;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 100px 1px rgb(180, 180, 180);
+    text-align: center;
+}
+
+#tableUpperLeft:hover{
+    box-shadow: -1vw -1vh 100px 1px rgb(63, 23, 128);
+    transform: scale(1.1);
+    z-index: 3;
+}
+#tableDownLeft:hover{
+    box-shadow: -1vw 1vh 100px 1px rgb(0, 0, 219);
+    transform: scale(1.1);
+    z-index: 3;
+}
+#tableUpperRight:hover{
+    box-shadow: 1vw -1vh 100px 1px rgb(0, 41, 102);
+    transform: scale(1.1);
+    z-index: 3;
+}
+#tableDownRight:hover{
+    box-shadow: 1vw 1vh 100px 1px rgb(0, 99, 156);
+    transform: scale(1.1);
+    z-index: 3;
+}
+
+#tableUpperLeft{
+    display: flex;
+    border-top-color: rgb(63, 23, 128);
+    border-top-width:1vw;
+    border-top-style: solid;
+    border-left-color: rgb(63, 23, 128);
+    border-left-width:1vw;
+    border-left-style: solid;
+    border-top-left-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(85, 47, 145);
+}
+
+#tableUpperRight{
+    display: flex;
+    flex-direction: row-reverse;
+    border-top-color: rgb(0, 41, 102);
+    border-top-width:1vw;
+    border-top-style: solid;
+    border-right-color: rgb(0, 41, 102);
+    border-right-width:1vw;
+    border-right-style: solid;
+    border-top-right-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(34, 68, 119);
+}
+
+#tableDownLeft{
+    display: flex;
+    flex-direction: column-reverse;
+    border-bottom-color: rgb(0, 0, 219);
+    border-bottom-width:1vw;
+    border-bottom-style: solid;
+    border-left-color: rgb(0, 0, 219);
+    border-left-width:1vw;
+    border-left-style: solid;
+    border-bottom-left-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(68, 68, 255);
+}
+
+#tableDownRight{
+    display: flex;
+    flex-flow: column-reverse;
+    float:right;
+    text-align: right;
+    border-bottom-color: rgb(0, 99, 156);
+    border-bottom-width:1vw;
+    border-bottom-style: solid;
+    border-right-color: rgb(0, 99, 156);
+    border-right-width:1vw;
+    border-right-style: solid;
+    border-bottom-right-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(6, 117, 182);
+}
+
+.tableRow{
+    display:flex;
+    height:50%;
+    width:100%;
+}
+
+.tableCell{
+    position:relative;
+    z-index: 2;
+    display: flex;
+    width:50%;
+    height:100%;
+    background-color: white;
+    cursor: pointer;
+}
+
+.tableRow{
+    display:flex;
+    flex-direction: row;
+}
+.tableCellTitle{
+    font-size: 5vw;
+    padding:15%;
+    color:white
+}
+
+
+#centerImage{
+    width:90%;
+    height:90%;
+    margin-top:5%;
+}

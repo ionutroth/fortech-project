@@ -1,0 +1,18 @@
+#article{
+    background-color: gray;
+    width:90%;
+    padding:10px
+}
+
+#articleLink{
+    padding:10px;
+    background-color: blue;
+ 
+    color: white;
+    border-style: none;
+}
+
+#article > h2{
+    margin:0px;
+    padding:10px;
+}

@@ -1,0 +1,21 @@
+#AccountPage > h1{
+    color: white;
+}
+
+#deleteAccount{
+    background-color: red;
+    border-style: none;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    margin:0px 10px
+}
+
+#editAccount{
+    background-color: blue;
+    border-style: none;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    margin:0px 10px
+}

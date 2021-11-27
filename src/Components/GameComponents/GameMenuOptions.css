@@ -1,0 +1,14 @@
+.gameMenuOption{
+    height:16.25%;
+    color: white;
+    background-color: rgb(111, 111, 231);
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all ease-in-out 0.1s;
+    font-size: 25px;
+    text-decoration: none;
+}

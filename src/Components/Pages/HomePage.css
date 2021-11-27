@@ -1,0 +1,45 @@
+.homePageOption{
+    background-color: gray;
+    padding:2.5vh 2.5vw;
+    margin-top:1vh;
+    margin-bottom:1vh;
+}
+
+.homePageTitle{
+    color: white;
+    font-size: 3vw;
+    padding:10px
+}
+
+.homePageContent{
+    color:white;
+    font-size: 16px;
+    padding:10px
+}
+
+.homePageLink{
+    background-color: rgb(3, 3, 167);
+    color:white;
+    padding:10px;
+    height:25px;
+    font-size:17px;
+
+}
+
+#gameWindow{
+    height:90%;
+    width:100%
+}
+
+#linkAbout{
+    width:110px;
+}
+
+#linkGame{
+    width:70px;
+}
+
+#linkContact{
+    width:82px;
+}
+

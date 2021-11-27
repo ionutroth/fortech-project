@@ -1,0 +1,60 @@
+.modalPolicyBackgroundClosed{
+    position:absolute;
+    display:none;
+}
+.modalPolicyDivClosed{
+    position:absolute;
+    display:none
+}
+
+.modalPolicyBackground{
+    position:absolute;
+    top:0;
+    left:0;
+    background-color: black;
+    opacity: 0.4;
+    width:100%;
+    height:100%;
+    z-index: 20;
+}
+
+.modalPolicyDiv{
+    position:absolute;
+    top:10vh;
+    right:calc((100vw - 350px)/2);
+    width:350px;
+    height:250px;
+    z-index: 21;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.modalPolicyDiv > h1{
+    background-color: rgb(17, 17, 128);
+    margin:0px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+.modalPolicyDiv > p{
+    text-align: center;
+    margin:7px;
+}
+
+.modalPolicyDiv > button{
+    background-color: rgb(25, 25, 114);
+    color:white;
+    font-size: 20px;
+    border-style: none;
+    padding:7px;
+    margin-left:40%;
+    cursor: pointer;
+}
+
+.modalPolicyDiv > hr {
+    margin:3px 0px
+}

@@ -1,0 +1,84 @@
+.modalWarningBackgroundClosed{
+    position: absolute;
+    display: none;
+}
+.modalWarningDivClosed{
+    position:absolute;
+    display: none;
+    background-color: aqua;
+}
+
+.modalWarningBackground{
+    position:absolute;
+    z-index:20;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.modalWarningDiv{
+    position: absolute;
+    top:10vh;
+    right:calc((100vw - 350px)/2);
+    width:350px;
+    height:220px;
+    z-index:21;
+    background-color: white;
+    border-radius: 20px;
+
+}
+
+.modalWarningDiv > h1{
+    background-color: rgb(17, 17, 128);
+    margin:0px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+.modalWarningDiv > p{
+    text-align: center;
+    margin:7px;
+}
+
+.modalWarningDiv >div> button{
+    background-color: rgb(25, 25, 114);
+    color:white;
+    font-size: 20px;
+    border-style: none;
+    padding:7px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top:20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#LinkButton{
+    background-color: rgb(25, 25, 114);
+    color:white;
+    font-size: 20px;
+    border-style: none;
+    padding:7px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top:20px;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.modalWarningDiv > hr {
+    margin:3px 0px
+}
+
+.modalWarningDiv > div{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+}

@@ -1,0 +1,62 @@
+#gameAccount{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width:100%;
+    background-color: rgb(117, 117, 117);
+}
+
+#gameAccount >:first-child{
+    height:200px;
+}
+
+#accountInfoDiv{
+    width:calc(100% - 200px);
+}
+
+#accountInfoDiv > h2,
+#accountInfoDiv > h4{
+margin:10px 0px 10px 20px;
+
+}
+
+#accountPortretDiv{
+    width:200px;
+    border-right-style: solid;
+    border-color: white;
+    border-width:1px;
+    
+}
+
+#borderedColumn{
+    border-right-style: solid;
+    border-color: white;
+    border-width: 1px;
+}
+
+#gameAccount > hr {
+    width:90%
+}
+
+#accountPortret{
+    height:150px;
+    width: 150px;
+    margin:auto;
+}
+
+.gameAccountRow{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+}
+
+.gameAccountColumn{
+    display:flex;
+    flex-direction: column;
+    
+}
+
+.Stats{
+    width:50%;
+    padding-left:30px
+}
