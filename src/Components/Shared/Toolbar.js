@@ -8,9 +8,24 @@ const Toolbar = (props) => {
 
   const UserAccountOptions = () => {
     if (ctx.userLoggedIn) {
-      return (
+      if(ctx.currentUser === "admin"){
+        return (
+          <div id="toolbar-right">
+            <Link to="/" className="toolbar-item"  onClick={ctx.Logout}>
+              Sign-out
+            </Link>
+            <Link to="/account" className="toolbar-item">
+              Account
+            </Link>
+            <Link to="/admin" className="toolbar-item">
+              Administrate
+            </Link>
+          </div>
+        );
+      }else{
+        return (
         <div id="toolbar-right">
-          <Link to="/" className="toolbar-item">
+          <Link to="/" className="toolbar-item" onClick={ctx.Logout}>
             Sign-out
           </Link>
           <Link to="/account" className="toolbar-item">
@@ -18,13 +33,15 @@ const Toolbar = (props) => {
           </Link>
         </div>
       );
+      }
+      
     } else {
       return (
         <div id="toolbar-right">
-          <Link to="/authentification" className="toolbar-item">
+          <Link to={`/authentification/${0}`} className="toolbar-item">
             Sign-up
           </Link>
-          <Link to="/authentification" className="toolbar-item">
+          <Link to={`/authentification/${50}`} className="toolbar-item">
             Sign-in
           </Link>
         </div>

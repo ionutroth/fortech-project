@@ -1,6 +1,7 @@
 import Body from '../Shared/Body.js';
 import './HomePage.css';
 
+
 const HomePage = () => {
     return (
         <Body>

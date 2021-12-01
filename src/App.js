@@ -24,17 +24,28 @@ import GameInventoryPage from "./Components/GamePages/GameInventoryPage.js";
 import GameShopPage from "./Components/GamePages/GameShopPage.js";
 import GameAccountPage from "./Components/GamePages/GameAccountPage.js";
 import GameMenuWrapper from "./Components/GameComponents/GameMenuWrapper.js";
-import GamePlayPage from "./Components/GamePages/GamePlayPage.js"
+import GamePlayPage from "./Components/GamePages/GamePlayPage.js";
 import GameLeaderBoard from "./Components/GamePages/GameLeaderBoard.js";
-import GameNewsPage from "./Components/GamePages/GameNewsPage"
-
+import GameNewsPage from "./Components/GamePages/GameNewsPage";
+import { collection, getDocs, query, where } from "@firebase/firestore";
+import { db } from "./Firebase";
+import AdminPage from './Components/Pages/AboutPage.js'
 
 function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(true);
-  const [user, setUser] = useState("nope");
-  const [option, setOption] = useState("signup");
   const [showModalPolicy, setShowModalPolicy] = useState(false);
   const [showModalWarning, setShowModalWarning] = useState(false);
+
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  const [currentUsername, setCurrentUsername] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
+  const [currentEmail, setCurrentEmail] = useState("");
+  const [currentCreationDate, setCurrentCreationDate] = useState("");
+  const [currentFunds, setCurrentFunds] = useState(0);
+  const [currentHeroesNumber, setCurrentHeroesNumber] = useState(0);
+  const [currentHighscoreEasy, setCurrentHighscoreEasy] = useState(0);
+  const [currentHighscoreNormal, setCurrentHighscoreNormal] = useState(0);
+  const [currentHighscoreHard, setCurrentHighscoreHard] = useState(0);
 
   const ShowModalPolicy = () => {
     setShowModalPolicy(true);
@@ -54,11 +65,52 @@ function App() {
     setShowModalWarning(false);
   };
 
+  const Logout = () => {
+    setUserLoggedIn(false);
+    setCurrentFunds(0);
+    setCurrentUsername("");
+    setCurrentEmail("");
+    setCurrentUser("");
+    setCurrentHeroesNumber("");
+    setCurrentUser("");
+  };
+
   return (
-    <Credentials.Provider value={{ userLoggedIn: userLoggedIn, user: user }}>
+    <Credentials.Provider
+      value={{
+        userLoggedIn: userLoggedIn,
+        currentUser:currentUser,
+        currentUsername: currentUsername,
+        currentFunds: currentFunds,
+        currentEmail: currentEmail,
+        currentCreationDate: currentCreationDate,
+        currentHeroesNumber: currentHeroesNumber,
+        currentHighscoreEasy: currentHighscoreEasy,
+        currentHighscoreNormal: currentHighscoreNormal,
+        currentHighscoreHard: currentHighscoreHard,
+        Logout: Logout,
+        login: async (useremail) => {
+          const usersRef = await collection(db, "Users");
+          const user = await query(usersRef, where("email", "==", useremail));
+          const userdetails = await getDocs(user);
+          userdetails.forEach((doc) => {
+            setUserLoggedIn(true);
+            setCurrentFunds(doc.data().funds);
+            setCurrentUsername(doc.data().username);
+            setCurrentUser(doc.data().name);
+            setCurrentEmail(doc.data().email);
+            setCurrentCreationDate(doc.data().creationDate);
+            setCurrentHeroesNumber(doc.data().heroesNumber);
+            setCurrentHighscoreEasy(doc.data().highscoreEasy);
+            setCurrentHighscoreNormal(doc.data().highscoreNormal);
+            setCurrentHighscoreHard(doc.data().highscoreHard)
+            console.log(doc.id, doc.data());
+          });
+        },
+      }}
+    >
       <Router>
         <Toolbar ShowModalWarning={ShowModalWarning} />
-
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -78,8 +130,8 @@ function App() {
             <Route path="settings" element={<GameSettingsPage />} />
             <Route path="account" element={<GameAccountPage />} />
           </Route>
-
           <Route exact path="/account" element={<AccountPage />} />
+          <Route exact path="/administrate" element={<AdminPage/>} />
         </Routes>
         {ReactDOM.createPortal(
           <ModalPolicy

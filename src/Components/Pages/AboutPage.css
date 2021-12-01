@@ -1,19 +1,19 @@
 #table{
     display: flex;
-    width:60vw;
-    height:60vw;
-    margin:auto;
+    width:50vw;
+    height:50vw;
+    margin:20px auto;
     flex-direction: column;
     position:relative
 }
 
 #table>:first-child{
     position:absolute;
-    width:30vw;
-    height:30vw;
+    width:25vw;
+    height:25vw;
     background-color: rgb(177, 177, 177);
-    top:15vw;
-    left:15vw;
+    top:12.5vw;
+    left:12.5vw;
     z-index:10;
     border-radius: 50%;
     transition: all 0.3s ease-in-out;
@@ -120,11 +120,10 @@
     flex-direction: row;
 }
 .tableCellTitle{
-    font-size: 5vw;
+    font-size: 4vw;
     padding:15%;
     color:white
 }
-
 
 #centerImage{
     width:90%;

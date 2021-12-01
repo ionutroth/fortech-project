@@ -1,17 +1,35 @@
-import AboutDescription from "../AboutComponents/AboutDescription"
-import { useState } from "react";
-import game_image from '../../Assets/game_image.png'
-import react_image from '../../Assets/react_image.png'
-import spring_boot_image from '../../Assets/spring_boot_image.png'
-import user_image from '../../Assets/user_image.png'
-import project_image from '../../Assets/project_image.png'
-import './AboutPage.css'
-import Body from '../Shared/Body.js'
+import AboutDescription from "../AboutComponents/AboutDescription";
+import { useState,useEffect,useContext } from "react";
+import game_image from '../../Assets/game_image.png';
+import react_image from '../../Assets/react_image.png';
+import spring_boot_image from '../../Assets/spring_boot_image.png';
+import user_image from '../../Assets/user_image.png';
+import project_image from '../../Assets/project_image.png';
+import './AboutPage.css';
+import Body from '../Shared/Body.js';
+import {db} from '../../Firebase.js'
+import { collection, getDocs, setDoc, doc } from "@firebase/firestore";
+import Credentials from "../../Context/Credentials";
+
 
 const About = () => {
 
     const [option, setOption] = useState("none");
     const [hoverImage, setHoverImage] = useState(project_image)
+    const userCollectionRef = collection(db, "Users")
+    const ctx = useContext(Credentials);
+
+
+    useEffect(() =>{
+
+        const getUsers = async () =>{
+            await setDoc(doc(userCollectionRef),{
+                name:"ceva"
+            })
+        };
+
+        getUsers();
+    },[])
 
     return (
         <Body>

@@ -1,18 +1,36 @@
-#article{
+.article{
     background-color: gray;
-    width:90%;
-    padding:10px
+    width:95%;
+    padding:1%
 }
 
-#articleLink{
+.articleTitle{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    margin-bottom: 5px;
+}
+
+.articleTitle>div{
+    width:50%
+}
+
+.articleTitle>:last-child{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.articleTitle>div>h2{
+    margin: 0px;
+}
+
+.articleDescription{
+    display: none;
+}
+
+.articleLink{
+    border-style:none;
     padding:10px;
     background-color: blue;
- 
-    color: white;
-    border-style: none;
-}
-
-#article > h2{
-    margin:0px;
-    padding:10px;
+    color:white
 }

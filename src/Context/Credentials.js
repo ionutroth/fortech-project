@@ -3,7 +3,8 @@ import React from "react"
 
 const Credentials = React.createContext({
     userLoggedIn:false,
-    userName:"",
+    currentUser:"",
+    currentFunds:0
 }); 
 
 export default Credentials;
