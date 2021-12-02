@@ -9,6 +9,7 @@ import {
   Route,
   Routes,
   Navigate,
+  useNavigate
 } from "react-router-dom";
 import GamePage from "./Components/Pages/GamePage";
 import AccountPage from "./Components/Pages/AccountPage";
@@ -48,6 +49,9 @@ function App() {
   const [currentHighscoreNormal, setCurrentHighscoreNormal] = useState(0);
   const [currentHighscoreHard, setCurrentHighscoreHard] = useState(0);
 
+  let navigate = useNavigate();
+
+
   const ShowModalPolicy = () => {
     setShowModalPolicy(true);
     console.log(showModalPolicy);
@@ -75,6 +79,7 @@ function App() {
     setCurrentHeroesNumber("");
     setCurrentUser("");
     await signOut(auth);
+    navigate("about")
   };
 
   return (
