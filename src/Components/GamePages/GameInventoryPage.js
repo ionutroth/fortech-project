@@ -9,6 +9,7 @@ import { GiTwoCoins } from "react-icons/gi";
 const GameInventoryPage = () => {
   const ctx = useContext(Credentials);
   const [inventoryItemsList, setInventoryItemsList] = useState([]);
+  const [currentItems, setCurrentItems] = useState([]);
 
   useEffect(() => {
     const FetchInventory = async () => {
@@ -35,6 +36,7 @@ const GameInventoryPage = () => {
         itemsList.push(item);
       });
       setInventoryItemsList(itemsList);
+      setCurrentItems(itemsList)
     };
 
     FetchInventory();
@@ -45,13 +47,14 @@ const GameInventoryPage = () => {
       <div>
         Funds: <span>{ctx.currentFunds}</span>
         <GiTwoCoins style={{ color: "gold" }} />
-        <button id="sortCommonItems">Common</button>
-        <button id="sortRareItems">Rare</button>
-        <button id="sortEpicItems">Epic</button>
-        <button id="sortLegendaryItems">Legendary</button>
+        <button id="sortCommonItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Common"))}}>Common</button>
+        <button id="sortRareItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Rare"))}}>Rare</button>
+        <button id="sortEpicItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Epic"))}}>Epic</button>
+        <button id="sortLegendaryItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Legendary"))}}>Legendary</button>
+        <button id="sortAllItems" onClick={()=>{setCurrentItems(inventoryItemsList)}}>All</button>
       </div>
       <div>
-      {inventoryItemsList.map((inventoryItem, index) => {
+      {currentItems.map((inventoryItem, index) => {
           return (
             <GameInventoryItem
               Name={inventoryItem.Class}

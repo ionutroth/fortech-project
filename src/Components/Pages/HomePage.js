@@ -4,7 +4,7 @@ import Welcome from "../../Assets/welcome-image.jpg";
 import Game from "../../Assets/game-image3.jpg";
 import Contact from "../../Assets/contact-ways.jpg";
 import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Credentials from "../../Context/Credentials.js";
 
 const HomePage = () => {
@@ -13,13 +13,13 @@ const HomePage = () => {
   const redirectionLink = () => {
     if (ctx.userLoggedIn) {
       return (
-        <Link className="homePageLink" id="linkContact" to="/game/menu">
+        <Link className="homePageLink" to="/game/menu">
           Try it out
         </Link>
       );
     } else {
       return (
-        <Link className="homePageLink" id="linkContact" to="/authentification">
+        <Link className="homePageLink" to="/authentification">
           Sign in
         </Link>
       );
@@ -35,7 +35,7 @@ const HomePage = () => {
             This project was made during a training at Fortech. Feel free to
             browse it, play the game and find out more about me or the project.
           </p>
-          <Link className="homePageLink" id="linkAbout" to="/about">
+          <Link className="homePageLink" to="/about">
             Find out more
           </Link>
         </div>
@@ -62,7 +62,7 @@ const HomePage = () => {
         <div>
           <h1>Contact</h1>
           <p>Find out more about the owner/developer of this project. </p>
-          <Link className="homePageLink" id="linkContact" to="/contact">
+          <Link className="homePageLink" to="/contact">
             Read more
           </Link>
         </div>

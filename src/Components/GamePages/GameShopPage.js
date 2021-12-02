@@ -48,13 +48,6 @@ const GameShopPage = () => {
     console.log(itemsList)
   }, []);
 
-  // const FilterItems = (rarity) =>{
-  //   let itemList = shopItems.filter(item => item.Rarity == rarity)
-  //   setCurrentItems(itemList)
-  //   console.log("ceva")
-  // }
-
-
   return (
     <div id="gameShopPage">
       <div>

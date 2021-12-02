@@ -29,7 +29,7 @@ const GameInventoryItem = (props) => {
         } else {
           setImage(Wizzard);
         }
-      }, []);
+      });
 
       const SellItem = async () =>{
         await deleteDoc(doc(db,"Heroes", props.ItemId))

@@ -31,6 +31,7 @@ import { collection, getDocs, query, updateDoc, where,doc } from "@firebase/fire
 import { db,auth } from "./Firebase";
 import {signOut} from "firebase/auth"
 import AdminPage from './Components/Pages/AboutPage.js'
+import GameTeamPage from "./Components/GamePages/GameTeamPage.js";
 
 function App() {
   const [showModalPolicy, setShowModalPolicy] = useState(false);
@@ -134,7 +135,7 @@ function App() {
               <Route path="" element={<GameMainMenuPage />} />
               <Route path="inventory" element={<GameInventoryPage />} />
               <Route path="shop" element={<GameShopPage />} />
-              <Route path="team" element={<GameMainMenuPage />} />
+              <Route path="team" element={<GameTeamPage />} />
               <Route path="leaderboard" element={<GameLeaderBoard />} />
               <Route path="play" element={<GamePlayPage />} />
               <Route path="news" element={<GameNewsPage />} />

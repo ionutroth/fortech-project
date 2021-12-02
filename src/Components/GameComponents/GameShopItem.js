@@ -22,7 +22,7 @@ const GameShopItem = (props) => {
     } else {
       setImage(Wizzard);
     }
-  }, []);
+  });
 
   const ShowItemModal = () => {
     setDisplay("flex");
