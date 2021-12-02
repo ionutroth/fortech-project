@@ -4,6 +4,7 @@ import Credentials from "../../Context/Credentials";
 import { db } from "../../Firebase";
 import { collection, getDocs, query, where } from "@firebase/firestore";
 import GameInventoryItem from "../GameComponents/GameInventoryItem";
+import { GiTwoCoins } from "react-icons/gi";
 
 const GameInventoryPage = () => {
   const ctx = useContext(Credentials);
@@ -20,6 +21,7 @@ const GameInventoryPage = () => {
       const HeroesList = await getDocs(HeroesQuery);
       HeroesList.forEach((doc) => {
         let item = {
+          Id: doc.id,
           Class: doc.data().Class,
           Rarity: doc.data().Rarity,
           HP: doc.data().HP,
@@ -39,24 +41,37 @@ const GameInventoryPage = () => {
   }, []);
 
   return (
-    <div id="gameInventory">
-      <div className="gameInventoryCol" id="gameInventoryItemDiv">
-        {inventoryItemsList.map((inventoryItem, index) => {
+    <div id="gameInventoryPage">
+      <div>
+        Funds: <span>{ctx.currentFunds}</span>
+        <GiTwoCoins style={{ color: "gold" }} />
+        <button id="sortCommonItems">Common</button>
+        <button id="sortRareItems">Rare</button>
+        <button id="sortEpicItems">Epic</button>
+        <button id="sortLegendaryItems">Legendary</button>
+      </div>
+      <div>
+      {inventoryItemsList.map((inventoryItem, index) => {
           return (
             <GameInventoryItem
               Name={inventoryItem.Class}
               Image={inventoryItem.Class}
-              Price={inventoryItem.Price}
+              Price={inventoryItem.Value}
               OuterStyle={inventoryItem.Rarity + "__Outer"}
               InnerStyle={inventoryItem.Rarity + "__Inner"}
               HP={inventoryItem.HP}
-              MagicArmor={inventoryItem.MArmor}
-              PhysArmor={inventoryItem.PArmor}
-              PhysAttack={inventoryItem.PAttack}
-              MagicAttack={inventoryItem.MAttack}
+              MagicArmor={inventoryItem.MagicArmor}
+              PhysArmor={inventoryItem.PhysArmor}
+              PhysAttack={inventoryItem.PhysAttack}
+              MagicAttack={inventoryItem.MagicAttack}
               key={index}
               Speed={inventoryItem.Speed}
               Rarity={inventoryItem.Rarity}
+              ItemId={inventoryItem.Id}
+              RemoveItem={(id)=>{
+                let filteredList = inventoryItemsList.filter((obj) => {return obj.Id !== id})
+                setInventoryItemsList(filteredList)
+              }}
             />
           );
         })}

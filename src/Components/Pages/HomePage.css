@@ -3,6 +3,34 @@
     padding:2.5vh 2.5vw;
     margin-top:1vh;
     margin-bottom:1vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.homePageOption>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width:50%;
+    padding:3%
+}
+
+.homePageOption>div>img{
+    width:100%;
+    height:100%
+}
+
+.homePageOption>div>h1{
+    color: white;
+    text-align: start;
+    margin: 0px;
+}
+
+.homePageOption>div>p{
+    color: white;
+    text-align: start;
+    margin: 0px;
+    font-size: 20px;
 }
 
 .homePageTitle{
@@ -23,7 +51,21 @@
     padding:10px;
     height:25px;
     font-size:17px;
+    width:140px;
+    text-align: center;
+    transition:all 0.5s ease-in-out
+}
 
+.homePageLink:hover::before{
+    content: ">";
+}
+
+.homePageLink:hover::after{
+    content: "<";
+}
+
+.homePageLink:hover{
+    transform: scaleX(1.1);
 }
 
 #gameWindow{
@@ -31,15 +73,4 @@
     width:100%
 }
 
-#linkAbout{
-    width:110px;
-}
-
-#linkGame{
-    width:70px;
-}
-
-#linkContact{
-    width:82px;
-}
 

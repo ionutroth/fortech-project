@@ -1,40 +1,50 @@
-.gameInventory>:first-child>div:hover{
-    color: rgb(196, 196, 196);
-    background-color: rgb(57, 57, 172);
-    border-color: rgb(165, 164, 164);
+#gameInventoryPage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: gray;
 }
 
-.gameInventory:last-child{
+#gameInventoryPage > :first-child {
+  font-size: 20px;
+  padding: 5px 0px 5px 10px;
+  background-color: rgb(118, 118, 209);
+  color: white;
+}
+
+#gameInventoryPage > :first-child > button {
+  border-style: none;
+  padding: 7px;
+  margin: 0px 10px;
+  color: white;
+}
+
+#gameInventoryPage > :last-child{
     display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  width: 100%;
+  height:100%;
 }
 
-.InventoryItem{
-    width:100px;
-    height:300px;
-    background-color: aqua;
+.gameInventoryItem {
+  width: 100px;
+  height: 300px;
+  background-color: aqua;
 }
 
-#gameInventory{
-    display: flex;
-    flex-direction: row;
-    width:100%;
-    height:500px;
-    background-color: white;
+#gameInventoryCol {
+  height: 100%;
 }
 
-#gameInventoryCol{
-    height:100%
+#gameInventoryItemDiv {
+  overflow: scroll;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
 }
-
-#gameInventoryItemDiv{
-    overflow: scroll;
-    width:75%;
-    display: flex;
-    flex-direction: row;
-
-}
-#gameInventoryToolbar{
-    width:25%
+#gameInventoryToolbar {
+  width: 25%;
 }

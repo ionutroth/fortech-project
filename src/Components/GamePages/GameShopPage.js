@@ -9,7 +9,7 @@ import { collection, getDocs, query,orderBy } from "@firebase/firestore";
 const GameShopPage = () => {
   const ctx = useContext(Credentials);
   const [shopItems, setShopItems] = useState([]);
-  let itemsComponents = [];
+  const [currentItems, setCurrentItems] = useState([]);
 
   useEffect(() => {
     let itemsList = [];
@@ -38,46 +38,36 @@ const GameShopPage = () => {
         
       });
       setShopItems(itemsList);
+      setCurrentItems(itemsList)
     };
 
     FetchShopItems();
 
-    itemsList.forEach((shopItem, index)=>{
-        itemsComponents.push(
-            <GameShopItem
-              Name={shopItem.Class}
-              Image={shopItem.Class}
-              Price={shopItem.Price}
-              OuterStyle={shopItem.Rarity + "__Outer"}
-              InnerStyle={shopItem.Rarity + "__Inner"}
-              HP={shopItem.HP}
-              MagicArmor={shopItem.MArmor}
-              PhysArmor={shopItem.PArmor}
-              PhysAttack={shopItem.PAttack}
-              MagicAttack={shopItem.MAttack}
-              Speed={shopItem.Speed}
-              Rarity={shopItem.Rarity}
-              key={index}
-
-            />
-        )
-    })
+    
     
     console.log(itemsList)
   }, []);
+
+  // const FilterItems = (rarity) =>{
+  //   let itemList = shopItems.filter(item => item.Rarity == rarity)
+  //   setCurrentItems(itemList)
+  //   console.log("ceva")
+  // }
+
 
   return (
     <div id="gameShopPage">
       <div>
         Funds: <span>{ctx.currentFunds}</span>
         <GiTwoCoins style={{ color: "gold" }} />
-        <button id="sortCommonItems">Common</button>
-        <button id="sortRareItems">Rare</button>
-        <button id="sortEpicItems">Epic</button>
-        <button id="sortLegendaryItems">Legendary</button>
+        <button id="sortCommonItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Common"))}>Common</button>
+        <button id="sortRareItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Rare"))}>Rare</button>
+        <button id="sortEpicItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Epic"))}>Epic</button>
+        <button id="sortLegendaryItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Legendary"))}>Legendary</button>
+        <button id="sortAllItems" onClick={()=>setCurrentItems(shopItems)}>All</button>
       </div>
       <div>
-        {shopItems.map((shopItem, index) => {
+        {currentItems.map((shopItem, index) => {
           return (
             <GameShopItem
               Name={shopItem.Class}

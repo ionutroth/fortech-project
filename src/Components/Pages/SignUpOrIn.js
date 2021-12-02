@@ -11,6 +11,7 @@ import { setDoc, doc } from "@firebase/firestore";
 // import {useNavigate} from "react-router-dom"
 import { useContext } from "react";
 import Credentials from "../../Context/Credentials.js";
+import { useNavigate } from "react-router";
 
 const SignUpOrIn = (props) => {
   const [emailSignin, setEmailSignin] = useState("");
@@ -32,10 +33,7 @@ const SignUpOrIn = (props) => {
   const [validCredentials, setValidCredentials] = useState(true);
   const ctx = useContext(Credentials);
 
-  // const Redirect = () =>{
-  //     let navigate = useNavigate();
-  //     navigate("about");
-  // }
+  let navigate = useNavigate();
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -115,6 +113,7 @@ const SignUpOrIn = (props) => {
           heroesNumber: 0,
           email: emailSignUp,
         });
+        navigate("/");
       } catch (error) {
         console.log(error.message);
         alert(error.message);
@@ -128,6 +127,7 @@ const SignUpOrIn = (props) => {
       await signInWithEmailAndPassword(auth, emailSignin, passwordSignin).then(
         ctx.login(emailSignin)
       );
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }

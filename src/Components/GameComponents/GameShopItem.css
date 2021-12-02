@@ -1,7 +1,7 @@
 .gameShopItem {
   width: 150px;
   height: 200px;
-  transition: all 0.3s ease-in;
+  transition: transform 0.3s ease-in;
   transform-origin: center center;
   position: relative;
   cursor: pointer;

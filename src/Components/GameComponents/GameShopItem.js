@@ -33,7 +33,6 @@ const GameShopItem = (props) => {
   };
 
   const BuyItem = async () => {
-    console.log("ceva", props.Price, ctx.userLoggedIn, ctx.currentFunds);
     
       await addDoc(collection(db, "Heroes"), {
         Owner: ctx.currentEmail,
@@ -47,7 +46,8 @@ const GameShopItem = (props) => {
         Rarity: props.Rarity,
         Speed: props.Speed,
       });
-    
+      ctx.UpdateFunds(props.Price);
+     
   };
 
   return (
@@ -58,7 +58,7 @@ const GameShopItem = (props) => {
       >
         <div className={props.InnerStyle}>
           <h5>{props.Name}</h5>
-          <img src={image} className="i" />
+          <img src={image}/>
           <p>
             <b>{props.Price} </b>
             <GiTwoCoins size={10} />

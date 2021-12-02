@@ -3,11 +3,15 @@ import OutsideClickHandler from "react-outside-click-handler";
 import Cleric from "../../Assets/Cleric.png";
 import Warrior from "../../Assets/Warrior.png";
 import Wizzard from "../../Assets/Wizzard.png";
-import { useEffect,useState } from "react";
+import { useEffect,useState,useContext } from "react";
+import { deleteDoc, doc } from "@firebase/firestore";
+import { db } from "../../Firebase";
+import Credentials from "../../Context/Credentials";
 
 const GameInventoryItem = (props) => {
     const [display, setDisplay] = useState("none");
     const [image, setImage] = useState();
+    let ctx = useContext(Credentials)
 
     const ShowItemModal = () => {
         setDisplay("flex");
@@ -27,14 +31,17 @@ const GameInventoryItem = (props) => {
         }
       }, []);
 
+      const SellItem = async () =>{
+        await deleteDoc(doc(db,"Heroes", props.ItemId))
+        props.RemoveItem(props.ItemId);
+        ctx.UpdateFunds(parseInt(props.Price/2)*-1)
+      }
+
   return (
-    <div className="gameInventoryWrapper">
-      <div
-        className={"gameInventoryItem " + props.OuterStyle}
-        onClick={ShowItemModal}
-      >
+    <div id="gameInventoryWrapper">
+      <div className={"gameInventoryItem " + props.OuterStyle} onClick={ShowItemModal}>
         <div className={props.InnerStyle}>
-          <h5>{props.Name}</h5>
+          <h3>{props.Name}</h3>
           <img src={image}/>
         </div>
       </div>
@@ -48,7 +55,7 @@ const GameInventoryItem = (props) => {
           <p>M. Armor: {props.MagicArmor}</p>
           <p>Speed: {props.Speed}</p>
           <div>
-            <button className="ModalInventoryButton">Sell</button>
+            <button className="ModalInventoryButton" onClick={SellItem}>Sell</button>
             <button className="ModalInventoryButton" onClick={HideItemsModal}>
               Cancel
             </button>

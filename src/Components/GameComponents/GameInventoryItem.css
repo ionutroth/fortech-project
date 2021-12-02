@@ -1,14 +1,110 @@
-.gameInventoryWrapper{
-    position:relative
+.gameInventoryItem {
+  width: 150px;
+  height: 200px;
+  transition: transition 0.3 ease-in;
+  transform-origin: center center;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  margin: 10px;
 }
 
-.gameInventoryItem{
-    width:150px;
-    height:150px;
-    transition: all 0.3 ease-in;
-    transform-origin: center center;
-    position:relative;
-    cursor: pointer;
-    display: flex;
-    margin:10px
+.gameInventoryItem:hover {
+  transform: scale(1.05);
+}
+
+.gameInventoryItem > div > img {
+  width: 100px;
+}
+
+.gameInventoryItem > div {
+  width: 130px;
+  height: 180px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameInventoryItem > div > h3 {
+  margin: 10px 0px;
+  text-align: center;
+  color: white;
+}
+
+.gameInventoryItem > div > p {
+  color: gold;
+  vertical-align: middle;
+}
+
+.gameInventoryItemModal > h2 {
+  margin: 0px;
+  text-align: center;
+}
+
+.gameInventoryItemModal {
+  flex-direction: column;
+  position: absolute;
+  top: 0%;
+  left: 75%;
+  width: 90%;
+  height: 200px;
+  z-index: 30;
+  background-color: rgb(80, 80, 80);
+  color: white;
+  padding: 5%;
+}
+
+.gameInventoryItemModal > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+}
+
+#gameInventoryWrapper {
+  position: relative;
+}
+
+.ModalInventoryButton {
+  padding: 7px;
+  width: 60px;
+  height: 30px;
+  background-color: blue;
+  color: white;
+  border-style: none;
+  cursor: pointer;
+}
+
+.Legendary__Outer {
+  background-color: rgb(228, 141, 10);
+}
+
+.Legendary__Inner {
+  background-color: rgb(145, 97, 8);
+}
+
+.Epic__Outer {
+  background-color: purple;
+}
+
+.Epic__Inner {
+  background-color: rgb(194, 65, 211);
+}
+
+.Rare__Outer {
+  background-color: blue;
+}
+
+.Rare__Inner {
+  background-color: rgb(85, 95, 226);
+}
+
+.Common__Outer {
+  background-color: rgb(2, 97, 2);
+}
+
+.Common__Inner {
+  background-color: rgb(0, 148, 20);
 }

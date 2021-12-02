@@ -1,7 +1,7 @@
 #table{
     display: flex;
-    width:50vw;
-    height:50vw;
+    width:40vw;
+    height:40vw;
     margin:20px auto;
     flex-direction: column;
     position:relative
@@ -9,11 +9,11 @@
 
 #table>:first-child{
     position:absolute;
-    width:25vw;
-    height:25vw;
+    width:20vw;
+    height:20vw;
     background-color: rgb(177, 177, 177);
-    top:12.5vw;
-    left:12.5vw;
+    top:10vw;
+    left:10vw;
     z-index:10;
     border-radius: 50%;
     transition: all 0.3s ease-in-out;
@@ -22,22 +22,22 @@
 }
 
 #tableUpperLeft:hover{
-    box-shadow: -1vw -1vh 100px 1px rgb(63, 23, 128);
+    box-shadow: -1vw -1vh 200px 1px rgb(63, 23, 128);
     transform: scale(1.1);
     z-index: 3;
 }
 #tableDownLeft:hover{
-    box-shadow: -1vw 1vh 100px 1px rgb(0, 0, 219);
+    box-shadow: -1vw 1vh 200px 1px rgb(0, 0, 219);
     transform: scale(1.1);
     z-index: 3;
 }
 #tableUpperRight:hover{
-    box-shadow: 1vw -1vh 100px 1px rgb(0, 41, 102);
+    box-shadow: 1vw -1vh 200px 1px rgb(0, 41, 102);
     transform: scale(1.1);
     z-index: 3;
 }
 #tableDownRight:hover{
-    box-shadow: 1vw 1vh 100px 1px rgb(0, 99, 156);
+    box-shadow: 1vw 1vh 200px 1px rgb(0, 99, 156);
     transform: scale(1.1);
     z-index: 3;
 }
@@ -120,7 +120,7 @@
     flex-direction: row;
 }
 .tableCellTitle{
-    font-size: 4vw;
+    font-size: 3.5vw;
     padding:15%;
     color:white
 }

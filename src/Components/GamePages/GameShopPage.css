@@ -1,50 +1,49 @@
-#gameShopPage{
-    display: flex;
-    width:100%;
-    height:100%;
-    flex-direction: column;
-    background-color: white;
-    background-color: gray;
+#gameShopPage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: gray;
 }
 
-#gameShopPage >:first-child{
-
-    font-size: 20px;
-    padding:5px 0px 5px 10px;
-    background-color: rgb(118, 118, 209);
-   color: white;
+#gameShopPage > :first-child {
+  font-size: 20px;
+  padding: 5px 0px 5px 10px;
+  background-color: rgb(118, 118, 209);
+  color: white;
 }
 
-#gameShopPage >:first-child>span{
-    color: gold;
-}
-
-#gameShopPage >:last-child{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-}
-
-#gameShopPage>:first-child>button{
+#gameShopPage > :first-child > button {
     border-style: none;
-    padding:7px;
-    margin:0px 10px;;
+    padding: 7px;
+    margin: 0px 10px;
     color: white;
+  }
+  
+#gameShopPage > :first-child > span {
+  color: gold;
 }
 
-#sortCommonItems{
-    background-color: green;
+#gameShopPage > :last-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
-#sortRareItems{
-    background-color: blue;
+
+#sortCommonItems {
+  background-color: green;
 }
 
-#sortEpicItems{
-    background-color: purple;
+#sortRareItems {
+  background-color: blue;
 }
 
-#sortLegendaryItems{
-    background-color: rgb(158, 104, 2);
+#sortEpicItems {
+  background-color: purple;
+}
+
+#sortLegendaryItems {
+  background-color: rgb(158, 104, 2);
 }

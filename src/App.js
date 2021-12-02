@@ -9,7 +9,6 @@ import {
   Route,
   Routes,
   Navigate,
-  useNavigate
 } from "react-router-dom";
 import GamePage from "./Components/Pages/GamePage";
 import AccountPage from "./Components/Pages/AccountPage";
@@ -28,7 +27,7 @@ import GameMenuWrapper from "./Components/GameComponents/GameMenuWrapper.js";
 import GamePlayPage from "./Components/GamePages/GamePlayPage.js";
 import GameLeaderBoard from "./Components/GamePages/GameLeaderBoard.js";
 import GameNewsPage from "./Components/GamePages/GameNewsPage";
-import { collection, getDocs, query, where } from "@firebase/firestore";
+import { collection, getDocs, query, updateDoc, where,doc } from "@firebase/firestore";
 import { db,auth } from "./Firebase";
 import {signOut} from "firebase/auth"
 import AdminPage from './Components/Pages/AboutPage.js'
@@ -49,7 +48,6 @@ function App() {
   const [currentHighscoreNormal, setCurrentHighscoreNormal] = useState(0);
   const [currentHighscoreHard, setCurrentHighscoreHard] = useState(0);
 
-  let navigate = useNavigate();
 
 
   const ShowModalPolicy = () => {
@@ -79,7 +77,6 @@ function App() {
     setCurrentHeroesNumber("");
     setCurrentUser("");
     await signOut(auth);
-    navigate("about")
   };
 
   return (
@@ -114,6 +111,15 @@ function App() {
             console.log(doc.id, doc.data());
           });
         },
+        UpdateFunds: async (amount) =>{
+          const userRef = doc(db, "Users", currentEmail)
+          const updatedFunds = parseInt(currentFunds-amount)
+          console.log(updatedFunds, currentFunds, amount)
+          await updateDoc(userRef,{
+            funds:updatedFunds
+          });
+          setCurrentFunds(updatedFunds)
+        }
       }}
     >
       <Router>
