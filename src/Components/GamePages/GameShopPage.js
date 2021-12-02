@@ -32,6 +32,7 @@ const GameShopPage = () => {
           PAttack: doc.data().PhysAttack,
           MAttack: doc.data().MagicAttack,
           HP: doc.data().HP,
+          Speed: doc.data().Speed
         };
         itemsList.push(shopItem);
         
@@ -54,7 +55,10 @@ const GameShopPage = () => {
               PhysArmor={shopItem.PArmor}
               PhysAttack={shopItem.PAttack}
               MagicAttack={shopItem.MAttack}
+              Speed={shopItem.Speed}
+              Rarity={shopItem.Rarity}
               key={index}
+
             />
         )
     })
@@ -87,10 +91,11 @@ const GameShopPage = () => {
               PhysAttack={shopItem.PAttack}
               MagicAttack={shopItem.MAttack}
               key={index}
+              Speed={shopItem.Speed}
+              Rarity={shopItem.Rarity}
             />
           )
         })}
-        {/* {itemsComponents} */}
       </div>
     </div>
   );

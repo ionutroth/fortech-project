@@ -1,0 +1,14 @@
+.gameInventoryWrapper{
+    position:relative
+}
+
+.gameInventoryItem{
+    width:150px;
+    height:150px;
+    transition: all 0.3 ease-in;
+    transform-origin: center center;
+    position:relative;
+    cursor: pointer;
+    display: flex;
+    margin:10px
+}

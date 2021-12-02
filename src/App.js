@@ -28,7 +28,8 @@ import GamePlayPage from "./Components/GamePages/GamePlayPage.js";
 import GameLeaderBoard from "./Components/GamePages/GameLeaderBoard.js";
 import GameNewsPage from "./Components/GamePages/GameNewsPage";
 import { collection, getDocs, query, where } from "@firebase/firestore";
-import { db } from "./Firebase";
+import { db,auth } from "./Firebase";
+import {signOut} from "firebase/auth"
 import AdminPage from './Components/Pages/AboutPage.js'
 
 function App() {
@@ -65,7 +66,7 @@ function App() {
     setShowModalWarning(false);
   };
 
-  const Logout = () => {
+  const Logout = async () => {
     setUserLoggedIn(false);
     setCurrentFunds(0);
     setCurrentUsername("");
@@ -73,6 +74,7 @@ function App() {
     setCurrentUser("");
     setCurrentHeroesNumber("");
     setCurrentUser("");
+    await signOut(auth);
   };
 
   return (

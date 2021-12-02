@@ -184,8 +184,6 @@ const SignUpOrIn = (props) => {
   );
   const [sliderPosition, setsliderPsition] = useState({ left: "0%" });
 
-  console.log(props.Position);
-
   return (
     <Body>
       <div id="splitRow">

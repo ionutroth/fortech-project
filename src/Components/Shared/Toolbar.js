@@ -38,10 +38,10 @@ const Toolbar = (props) => {
     } else {
       return (
         <div id="toolbar-right">
-          <Link to={`/authentification/${0}`} className="toolbar-item">
+          <Link to={`/authentification/`} className="toolbar-item">
             Sign-up
           </Link>
-          <Link to={`/authentification/${50}`} className="toolbar-item">
+          <Link to={`/authentification/`} className="toolbar-item">
             Sign-in
           </Link>
         </div>

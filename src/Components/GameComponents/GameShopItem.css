@@ -73,6 +73,7 @@
   background-color: blue;
   color: white;
   border-style: none;
+  cursor: pointer;
 }
 
 .Legendary__Outer {
