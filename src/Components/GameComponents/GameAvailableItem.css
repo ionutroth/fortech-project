@@ -1,0 +1,11 @@
+.availableItem{
+    background-color: blue;
+}
+
+.gameAvailableItem>div{
+    width:130px
+}
+
+.gameAvailableItem>div>div>img{
+    width:100px
+}

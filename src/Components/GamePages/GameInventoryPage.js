@@ -38,7 +38,6 @@ const GameInventoryPage = () => {
       setInventoryItemsList(itemsList);
       setCurrentItems(itemsList)
     };
-
     FetchInventory();
   }, []);
 
