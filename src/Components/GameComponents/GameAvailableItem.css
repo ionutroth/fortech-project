@@ -1,11 +1,64 @@
-.availableItem{
-    background-color: blue;
+.availableItemWrapper {
+  width: 100px;
+  height: 140px;
+  margin:5px
 }
 
-.gameAvailableItem>div{
-    width:130px
+.availableItemWrapper > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.gameAvailableItem>div>div>img{
-    width:100px
+.availableItemWrapper > div > div {
+  width: 90px;
+  height: 130px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.availableItemWrapper > div > div > h3 {
+  margin: 0px;
+  text-align: center;
+  color: white;
+}
+
+.availableItemWrapper > div > div > img {
+    width:80%;
+    margin: auto;
+  }
+
+.Legendary__Outer {
+  background-color: rgb(228, 141, 10);
+}
+
+.Legendary__Inner {
+  background-color: rgb(145, 97, 8);
+}
+
+.Epic__Outer {
+  background-color: purple;
+}
+
+.Epic__Inner {
+  background-color: rgb(194, 65, 211);
+}
+
+.Rare__Outer {
+  background-color: blue;
+}
+
+.Rare__Inner {
+  background-color: rgb(85, 95, 226);
+}
+
+.Common__Outer {
+  background-color: rgb(2, 97, 2);
+}
+
+.Common__Inner {
+  background-color: rgb(0, 148, 20);
 }

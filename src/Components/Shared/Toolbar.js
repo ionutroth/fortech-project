@@ -39,10 +39,7 @@ const Toolbar = (props) => {
       return (
         <div id="toolbar-right">
           <Link to={`/authentification/`} className="toolbar-item">
-            Sign-up
-          </Link>
-          <Link to={`/authentification/`} className="toolbar-item">
-            Sign-in
+            Sign-up/Sign-in
           </Link>
         </div>
       );
