@@ -15,10 +15,10 @@ const GameAvailableItem = (props) => {
     } else {
       setImage(Wizzard);
     }
-  });
+  },[]);
 
   return (
-    <div className="availableItemWrapper">
+    <div className="availableItemWrapper" onClick={props.Choose}>
       <div className={props.OuterStyle+"__Outer"}>
         <div className={props.InnerStyle+"__Inner"}>
           <h3>{props.Class}</h3>

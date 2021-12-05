@@ -44,7 +44,7 @@ const HomePage = () => {
         </div>
       </div>
       <hr />
-      <div className="homePageOption">
+      <div className="homePageOption" id="homePageOptionInversed">
         <div>
           <img src={Game} />
         </div>
@@ -55,6 +55,19 @@ const HomePage = () => {
             Collect heroes and forget about them.
           </p>
           {redirectionLink()}
+        </div>
+      </div>
+      <div className="homePageOption" id="homePageOptionNormal">
+        <div>
+          <h1>The game</h1>
+          <p>
+            Sign in and play the game. It is a simple turned base strategy game.
+            Collect heroes and forget about them.
+          </p>
+          {redirectionLink()}
+        </div>
+        <div>
+          <img src={Game} />
         </div>
       </div>
       <hr />

@@ -48,7 +48,7 @@ function App() {
   const [currentHighscoreEasy, setCurrentHighscoreEasy] = useState(0);
   const [currentHighscoreNormal, setCurrentHighscoreNormal] = useState(0);
   const [currentHighscoreHard, setCurrentHighscoreHard] = useState(0);
-
+  const [currentTeam, setCurrentTeam] = useState([])
 
 
   const ShowModalPolicy = () => {
@@ -84,6 +84,7 @@ function App() {
     <Credentials.Provider
       value={{
         userLoggedIn: userLoggedIn,
+        currentTeam: currentTeam,
         currentUser:currentUser,
         currentUsername: currentUsername,
         currentFunds: currentFunds,
@@ -120,6 +121,9 @@ function App() {
             funds:updatedFunds
           });
           setCurrentFunds(updatedFunds)
+        },
+        SaveTeam:(team)=>{
+          setCurrentTeam(team)
         }
       }}
     >

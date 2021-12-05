@@ -43,8 +43,6 @@ const GameShopPage = () => {
 
     FetchShopItems();
 
-    
-    
     console.log(itemsList)
   }, []);
 

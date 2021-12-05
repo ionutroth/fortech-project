@@ -27,7 +27,7 @@
     height: 58%;
 }
 
-#TeamRow div{
+#TeamRow>div{
     width: 33.3%;
     border-style:solid;
     border-color: white;
@@ -40,4 +40,10 @@
     display:flex;
     flex-direction: row;
     align-items: center;
+}
+
+#SaveTeam{
+  background-color: cadetblue;
+  float:right;
+  color:black
 }

@@ -1,0 +1,54 @@
+.TeamItem.Legendary{
+    background-color: orange;
+}
+.TeamItem.Epic{
+    background-color: purple;
+}
+.TeamItem.Rare{
+    background-color: blue;
+}
+.TeamItem.Common{
+    background-color: green;
+}
+
+div>img{
+    width:150px
+}
+.TeamItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative
+}
+
+#buttonGroup{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:5px 0px;
+}
+
+#statsButton{
+    background-color: white;
+    border-style: none;
+    padding: 7px;
+}
+
+#unequipButton{
+    background-color: black;
+    color: white;
+    border-style: none;
+    padding: 7px;
+}
+
+#statsModal{
+    position:absolute;
+    top:0%;
+    left:50%;
+    width:50%;
+    height:100%;
+    background-color: gray;
+    color: white;
+}

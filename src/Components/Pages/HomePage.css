@@ -73,3 +73,31 @@
     width:100%
 }
 
+@media screen and (max-width:800px) {
+    .homePageOption{
+        flex-direction: column;
+    }
+    .homePageOption>div{
+        width:100%
+    }
+    .homePageOption>div>img{
+        width:75%;
+        height:100%;
+        align-self: center;
+    }
+    #homePageOptionInversed{
+        display: none;
+    }
+    #homePageOptionNormal{
+        display: block;
+    }
+}
+
+@media screen and (min-width:800px){
+    #homePageOptionInversed{
+        display: flex;
+    }
+    #homePageOptionNormal{
+        display: none;
+    }
+}
