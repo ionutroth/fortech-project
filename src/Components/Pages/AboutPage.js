@@ -2,9 +2,9 @@ import AboutDescription from "../AboutComponents/AboutDescription";
 import { useState,  } from "react";
 import game_image from "../../Assets/game_image.png";
 import react_image from "../../Assets/react_image.png";
-import spring_boot_image from "../../Assets/spring_boot_image.png";
 import user_image from "../../Assets/user_image.png";
 import project_image from "../../Assets/project_image.png";
+import firebase_image from "../../Assets/firebase_image.png"
 import "./AboutPage.css";
 import Body from "../Shared/Body.js";
 
@@ -43,7 +43,7 @@ const About = () => {
             id="tableDownLeft"
             className="tableCell"
             onClick={() => setOption("backend")}
-            onMouseEnter={() => setHoverImage(spring_boot_image)}
+            onMouseEnter={() => setHoverImage(firebase_image)}
             onMouseLeave={() => setHoverImage(project_image)}
           >
             <p className="tableCellTitle">Backend</p>

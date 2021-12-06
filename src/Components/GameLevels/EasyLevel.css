@@ -1,0 +1,134 @@
+#easyLevel{
+    width:100%;
+    height:100%; 
+    display: flex;
+    flex-direction: column;
+    background-image: url("../../Assets/background_level_easy.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#sceneOrder{
+    width:400px;
+    height:100px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+#sceneOrder>div{
+    width:25%;
+    height:100%;
+    border-style:solid;
+    border-color: black;
+    border-width: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+}
+
+#easyLevel>div>div>img{
+    width:80px;
+}
+
+#actions{
+    width:70%;
+    height:25%;
+    background-color: gray;
+    border-style:solid;
+    border-color: #000000;;
+    border-width: 3px;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+}
+
+#actions>:first-child{
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#actions>:last-child{
+    width:50%;
+    background-color: white;
+    display:flex ;
+    overflow-y: scroll;
+}
+
+#sceneBody{
+    width:100;
+    height:55%;
+    display: flex;
+    flex-direction: row;
+}
+
+.sceneBodySides{
+    width:50%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.sceneBodySides>div{
+    width:30%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#bossPannel{
+    width:100%;
+    flex-direction: column;
+}
+
+#bossImage{
+    width:200px
+}
+
+.heroImage{
+    width:110px
+}
+
+#bossHpBar{
+    width:80%;
+    height: 20px;
+    border-color: #000000;
+    border-width: 3px;
+    border-style: solid;
+    margin-top: 1%;
+}
+
+#bossHpRemaining{
+    width: 100%;
+    height:100%;
+    background-color: green;
+}
+
+.heroHpBar{
+    width:80%;
+    height: 10px;
+    border-color: #000000;
+    border-width: 3px;
+    border-style: solid;
+    margin-top: 1%;
+}
+
+.heroHpRemaining{
+    width: 100%;
+    height:100%;
+    background-color: green;
+}
+
+.heroAction{
+    padding:10px;
+    background-color: blue;
+    color: white;
+    border-style: none;
+    cursor: pointer;
+}

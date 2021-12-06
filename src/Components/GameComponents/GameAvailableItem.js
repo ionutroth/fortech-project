@@ -15,7 +15,7 @@ const GameAvailableItem = (props) => {
     } else {
       setImage(Wizzard);
     }
-  },[]);
+  });
 
   return (
     <div className="availableItemWrapper" onClick={props.Choose}>

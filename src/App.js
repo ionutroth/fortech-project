@@ -32,6 +32,8 @@ import { db,auth } from "./Firebase";
 import {signOut} from "firebase/auth"
 import AdminPage from './Components/Pages/AboutPage.js'
 import GameTeamPage from "./Components/GamePages/GameTeamPage.js";
+import EasyLevel from "./Components/GameLevels/EasyLevel"
+
 
 function App() {
   const [showModalPolicy, setShowModalPolicy] = useState(false);
@@ -124,6 +126,7 @@ function App() {
         },
         SaveTeam:(team)=>{
           setCurrentTeam(team)
+          console.log(currentTeam)
         }
       }}
     >
@@ -143,6 +146,7 @@ function App() {
               <Route path="leaderboard" element={<GameLeaderBoard />} />
               <Route path="play" element={<GamePlayPage />} />
               <Route path="news" element={<GameNewsPage />} />
+              <Route path="easy" element={<EasyLevel/>} />
             </Route>
             <Route path="" element={<Navigate replace to="menu" />} />
             <Route path="settings" element={<GameSettingsPage />} />

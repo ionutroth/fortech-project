@@ -18,7 +18,7 @@ const GameTeamItem = (props) =>{
         }else(
             setImage(Cleric)
         )
-    }, [])
+    })
 
     const ShowModalStats = () =>{
         setDisplayValue("block")

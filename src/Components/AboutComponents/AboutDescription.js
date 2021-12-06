@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import './AboutDescription.css'
 import game_image from '../../Assets/game_image.png'
 import react_image from '../../Assets/react_image.png'
-import spring_boot_image from '../../Assets/spring_boot_image.png'
 import user_image from '../../Assets/user_image.png'
+import firebase_image from "../../Assets/firebase_image.png"
 
 const AboutDescription = (props) => {
 
@@ -16,7 +16,7 @@ const AboutDescription = (props) => {
         backend: {
             title: "The backend",
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            image: spring_boot_image
+            image: firebase_image
         },
         theme: {
             title: "The project theme",

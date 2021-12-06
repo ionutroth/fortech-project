@@ -1,8 +1,8 @@
 import "./Toolbar.css";
-import { useContext,useState } from "react";
+import { useContext, useState } from "react";
 import Credentials from "../../Context/Credentials";
 import { Link } from "react-router-dom";
-import {BsFillArrowDownCircleFill} from 'react-icons/bs'
+import { BsFillArrowDownCircleFill } from "react-icons/bs";
 
 const Toolbar = (props) => {
   const ctx = useContext(Credentials);
@@ -109,9 +109,11 @@ const Toolbar = (props) => {
             <Link to="/" className="toolbar-item" onClick={ctx.Logout}>
               Sign-out
             </Link>
+            <hr/>
             <Link to="/account" className="toolbar-item">
               Account
             </Link>
+            <hr/>
             <Link to="/admin" className="toolbar-item">
               Administrate
             </Link>
@@ -123,6 +125,7 @@ const Toolbar = (props) => {
             <Link to="/" className="toolbar-item" onClick={ctx.Logout}>
               Sign-out
             </Link>
+            <hr/>
             <Link to="/account" className="toolbar-item">
               Account
             </Link>
@@ -138,13 +141,13 @@ const Toolbar = (props) => {
     }
   };
 
-  const ChangeDropdownDisplay = () =>{
-    if( dropdownDisplay === "none"){
-      setDropdownDisplay("block")
-    }else if(dropdownDisplay === "block"){
-      setDropdownDisplay("none")
+  const ChangeDropdownDisplay = () => {
+    if (dropdownDisplay === "none") {
+      setDropdownDisplay("flex");
+    } else if (dropdownDisplay === "flex") {
+      setDropdownDisplay("none");
     }
-  }
+  };
 
   return (
     <div id="toolbar">
@@ -160,18 +163,27 @@ const Toolbar = (props) => {
       </div>
       {/* Dropdown version */}
       <div id="dropdownToolbar">
-        <div><BsFillArrowDownCircleFill onClick={ChangeDropdownDisplay}/></div>
-        <div id="dropdownToolbarItems" style={{display:dropdownDisplay}}>
+        <div>
+          <BsFillArrowDownCircleFill
+            size={30}
+            onClick={ChangeDropdownDisplay}
+          />
+        </div>
+        <div id="dropdownToolbarItems" style={{ display: dropdownDisplay }}>
           <Link to="/" className="toolbar-item">
             Home
           </Link>
+          <hr/>
           <Link to="/about" className="toolbar-item">
             About
           </Link>
+          <hr/>
           <Link to="/contact" className="toolbar-item">
             Contact
           </Link>
+          <hr/>
           {UserOptionsDropdown()}
+          <hr/>
           {UserAccountOptionsDropdown()}
         </div>
       </div>

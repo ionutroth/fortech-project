@@ -8,12 +8,13 @@ import GameTeamItem from "../GameComponents/GameTeamItem";
 
 const GameTeamPage = () => {
   const ctx = useContext(Credentials);
-  const [teamItems, setTeamItems] = useState([]);
-  const [availableItems, setAvailableItems] = useState([]);
-  const [currentItems, setCurrentItems] = useState([]);
-  const [currenFilter, setCurrentFilter] = useState("");
+  const [teamItems, setTeamItems] = useState([]); // All the team units
+  const [availableItems, setAvailableItems] = useState([]); // All available items
+  const [currentItems, setCurrentItems] = useState([]); // All the items that are currently shown
+  const [currenFilter, setCurrentFilter] = useState(""); // Filters the items with toolbar buttons
 
   useEffect(() => {
+    // Fetch all items from the database for the specific user.
     const FetchAvailableItems = async () => {
       let itemsList = [];
       const itemsRef = await collection(db, "Heroes");
@@ -37,7 +38,16 @@ const GameTeamPage = () => {
         itemsList.push(item);
       });
       setAvailableItems(itemsList);
-      setCurrentItems(itemsList);
+
+      let aux1= itemsList;
+      let aux2= [];
+      ctx.currentTeam.forEach((item)=>{
+        aux1 = aux1.filter(obj=>obj.Id !==item.Id)
+        aux2.push(item)
+      })
+      setCurrentItems(aux1)
+      setTeamItems(aux2)
+
     };
 
     FetchAvailableItems();
@@ -46,28 +56,13 @@ const GameTeamPage = () => {
   useEffect(() => {
     let aux = availableItems;
     teamItems.forEach((item) => {
-      aux = aux.filter((obj) => {
-        return obj.Id !== item.Id;
-      });
+      aux = aux.filter((obj) => obj.Id !== item.Id);
     });
-    setAvailableItems(aux);
-  },[teamItems]);
-
-  useEffect(()=>{
-    let currentTeam = ctx.currentTeam;
-    let aux1 = availableItems;
-    let aux2 = teamItems;
-    currentTeam.forEach((item)=>{
-      aux1 = aux1.filter((obj) => obj.Id !== item.Id)
-      aux2.push(item)
-    })
-    setCurrentItems(aux1);
-    setCurrentFilter("");
-    setTeamItems(aux2)
-
-    console.log(ctx.currentTeam)
-
-  },[])
+    if(currenFilter!==""){
+      aux = aux.filter((obj)=>obj.Id !== currenFilter)
+    }
+    setCurrentItems(aux)
+  }, [teamItems]);
 
   return (
     <div id="gameTeamPage">
@@ -126,7 +121,14 @@ const GameTeamPage = () => {
           All
         </button>
 
-        <button id="SaveTeam" onClick={ctx.SaveTeam(teamItems)}>Save Team</button>
+        <button
+          id="SaveTeam"
+          onClick={() => {
+            ctx.SaveTeam(teamItems);
+          }}
+        >
+          Save Team
+        </button>
       </div>
       <div id="TeamRow">
         {teamItems.map((teamItem, index) => {
@@ -136,22 +138,17 @@ const GameTeamPage = () => {
               Rarity={teamItem.Rarity}
               Class={teamItem.Class}
               Unequip={() => {
-                let aux1 = availableItems;
-                aux1.push(teamItem);
-                setAvailableItems(aux1);
+                let aux1 = teamItems;
+                aux1 = aux1.filter(obj => obj.Id !== teamItem.Id)
+                setTeamItems(aux1);
 
-                let aux2 = teamItems;
-                aux2 = aux2.filter((item) => item.Id !== teamItem.Id);
-                setTeamItems(aux2);
-
-                let aux3 = currentItems;
-                if(currenFilter == ""){
-                  aux3.push(teamItem);
-                }else if(currenFilter == teamItem.Rarity){
-                  aux3.push(teamItem)
+                let aux2 = currentItems;
+                if (currenFilter === "") {
+                  aux2.push(teamItem);
+                } else if (currenFilter === teamItem.Rarity) {
+                  aux2.push(teamItem);
                 }
-                setCurrentItems(aux3);
-
+                setCurrentItems(aux2);
               }}
             />
           );
@@ -174,31 +171,19 @@ const GameTeamPage = () => {
               OuterStyle={availableItem.Rarity}
               InnerStyle={availableItem.Rarity}
               Choose={() => {
-                let aux1 = availableItems;
-                aux1 = aux1.filter((item) => item.Id !== availableItem.Id);
-                setAvailableItems(aux1);
+                if (teamItems.length < 3) {
+                  let aux1 = currentItems;
+                  aux1 = aux1.filter((item) => item.Id !== availableItem.Id);
+                  setCurrentItems(aux1);
 
-                let aux2 = currentItems;
-                aux2 = aux2.filter((item) => item.Id !== availableItem.Id);
-                setCurrentItems(aux2);
+                  let aux2 = teamItems;
+                  aux2.push(availableItem);
+                  setTeamItems(aux2);
 
-                let aux3 = teamItems;
-                aux3.push({
-                  Id: availableItem.Id,
-                  Class: availableItem.Class,
-                  Rarity: availableItem.Rarity,
-                  HP: availableItem.HP,
-                  MagicArmor: availableItem.MagicArmor,
-                  PhysArmor: availableItem.PhysArmor,
-                  MagicAttack: availableItem.MagicAttack,
-                  PhysAttack: availableItem.PhysAttack,
-                  Speed: availableItem.Speed,
-                });
-                setTeamItems(aux3);
-
-                console.log("current items", currentItems);
-                console.log("team items", teamItems);
-                console.log("available items", availableItems);
+                  console.log(teamItems, currentItems)
+                } else {
+                  alert("Team limit reached! Remove an unit to add another.");
+                }
               }}
             />
           );

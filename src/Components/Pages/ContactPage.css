@@ -1,7 +1,7 @@
 .contactRow{
     display:flex;
     flex-direction: row;
-    width:100%;
+    width:100%
 }
 
 .contactColumnLeft{
@@ -11,6 +11,7 @@
     align-items: flex-end;
     height: 100%;
     object-fit: scale-down;
+    position:relative
 }
 
 #contactProfilePicture{
@@ -26,8 +27,18 @@
 .contactColumnRight{
     display:flex;
     flex-direction: column;
+    width:50%;
+    border-left-style: solid;
+    border-left-color:white;
+    border-left-width:3px;
+    padding-left: 2%;
+    min-height: 175px;
+}
+
+.contactColumnRight hr{
     width:50%
 }
+
 
 #contactPlatformColumn{
     position:relative;
@@ -47,4 +58,32 @@
 
 #contactBodyWrapper{
     width:100%;
+}
+
+
+@media screen and (max-width:500px){
+
+    .contactRow{
+        flex-direction: column;
+    }
+
+    .contactColumnLeft{
+        width:100%;
+        height:170px;
+    }
+
+    .contactColumnRight{
+        width: 100%;
+        text-align: center;
+        border-left-width:0px;
+        border-left-style: none;
+    }
+
+    .contactImage{
+        left:35%
+    }
+
+    #contactProfileImage{
+        
+    }
 }
