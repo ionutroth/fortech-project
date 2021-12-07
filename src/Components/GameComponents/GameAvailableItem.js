@@ -8,9 +8,9 @@ const GameAvailableItem = (props) => {
   const [image, setImage] = useState();
 
   useEffect(() => {
-    if (props.Class == "Cleric") {
+    if (props.Class === "Cleric") {
       setImage(Cleric);
-    } else if (props.Class == "Warrior") {
+    } else if (props.Class === "Warrior") {
       setImage(Warrior);
     } else {
       setImage(Wizzard);
@@ -22,7 +22,7 @@ const GameAvailableItem = (props) => {
       <div className={props.OuterStyle+"__Outer"}>
         <div className={props.InnerStyle+"__Inner"}>
           <h3>{props.Class}</h3>
-          <img src={image} />
+          <img src={image} alt="" />
         </div>
       </div>
     </div>

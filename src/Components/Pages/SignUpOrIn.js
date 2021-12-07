@@ -8,7 +8,6 @@ import {
 } from "@firebase/auth";
 import { db, auth } from "../../Firebase.js";
 import { setDoc, doc } from "@firebase/firestore";
-// import {useNavigate} from "react-router-dom"
 import { useContext } from "react";
 import Credentials from "../../Context/Credentials.js";
 import { useNavigate } from "react-router";
@@ -30,20 +29,20 @@ const SignUpOrIn = (props) => {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidConfirmedPassword, setInvalidConfirmedPassword] =
     useState(false);
-  const [validCredentials, setValidCredentials] = useState(true);
   const ctx = useContext(Credentials);
 
   let navigate = useNavigate();
 
   const handleRegister = async (event) => {
     event.preventDefault();
+    let credentialsValidity = true;
 
     if (
       firstNameSignUp.trim() === "" ||
       firstNameSignUp.trim().match(/[^a-z]/i) !== null
     ) {
       setInvalidFirstName(true);
-      setValidCredentials(false);
+      credentialsValidity = false;
     } else {
       setInvalidFirstName(false);
     }
@@ -52,7 +51,7 @@ const SignUpOrIn = (props) => {
       lastNameSignUp.trim().match(/[^a-z]/i) !== null
     ) {
       setInvalidLastName(true);
-      setValidCredentials(false);
+      credentialsValidity = false;
     } else {
       setInvalidLastName(false);
     }
@@ -61,25 +60,23 @@ const SignUpOrIn = (props) => {
       userNameSignUp.trim().match(/[^a-z0-9]/i) !== null
     ) {
       setInvalidUserName(true);
-      setValidCredentials(false);
+      credentialsValidity = false;
     } else {
       setInvalidUserName(false);
     }
     if (
-      passwordSignUp.trim().length === "" ||
-      passwordSignUp.trim().match(/[^a-z0-9]/i) !== null
+      passwordSignUp.trim() === "" ||
+      passwordSignUp.trim().match(/[^a-z0-9]/i) !== null ||
+      passwordSignUp.trim().length < 5
     ) {
       setInvalidPassword(true);
-      setValidCredentials(false);
+      credentialsValidity = false;
     } else {
       setInvalidPassword(false);
     }
-    if (
-      passwordConfirmedSignUp.trim() === "" ||
-      passwordConfirmedSignUp.trim() !== passwordSignUp.trim()
-    ) {
+    if (passwordConfirmedSignUp.trim() !== passwordSignUp.trim()) {
       setInvalidConfirmedPassword(true);
-      setValidCredentials(false);
+      credentialsValidity = false;
     } else {
       setInvalidConfirmedPassword(false);
     }
@@ -88,12 +85,12 @@ const SignUpOrIn = (props) => {
       emailSignUp.trim().match(/[^a-z0-9@.]/i) !== null
     ) {
       setInvalidEmail(true);
-      setValidCredentials(false);
+      credentialsValidity = false;
     } else {
       setInvalidEmail(false);
     }
 
-    if (validCredentials) {
+    if (credentialsValidity) {
       try {
         const fullName = firstNameSignUp + " " + lastNameSignUp;
         const today = new Date();
@@ -107,9 +104,6 @@ const SignUpOrIn = (props) => {
           username: userNameSignUp,
           funds: 0,
           creationDate: userDate,
-          highscoreEasy: 0,
-          highscoreNormal: 0,
-          highscoreHard: 0,
           heroesNumber: 0,
           email: emailSignUp,
         });
@@ -118,6 +112,8 @@ const SignUpOrIn = (props) => {
         console.log(error.message);
         alert(error.message);
       }
+    }else{
+      alert("Check again the")
     }
   };
 
@@ -129,7 +125,7 @@ const SignUpOrIn = (props) => {
       );
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      alert(error.message)
     }
   };
 
@@ -165,11 +161,33 @@ const SignUpOrIn = (props) => {
     setsliderChangeText(sliderInfo.sliderSignUp.change);
   };
 
+  const GoUp = () => {
+    setSliderPositionVerticaly({ top: "0%",height:"240px" });
+    setsliderDescriptionText(sliderInfo.sliderSignIn.description);
+    setsliderTitleText(sliderInfo.sliderSignIn.title);
+    setsliderChangeText(sliderInfo.sliderSignIn.change);
+  };
+
+  const GoDown = () => {
+    setSliderPositionVerticaly({ top: "103%",height:"450px" });
+    setsliderDescriptionText(sliderInfo.sliderSignUp.description);
+    setsliderTitleText(sliderInfo.sliderSignUp.title);
+    setsliderChangeText(sliderInfo.sliderSignUp.change);
+  };
+
   const Slide = () => {
     if (sliderPosition.left === "0%") {
       GoRight();
     } else if (sliderPosition.left === "50%") {
       GoLeft();
+    }
+  };
+
+  const SlideVert = () => {
+    if (sliderPositionVerticaly.top === "0%") {
+      GoDown();
+    } else if (sliderPositionVerticaly.top === "103%") {
+      GoUp();
     }
   };
 
@@ -184,6 +202,11 @@ const SignUpOrIn = (props) => {
   );
   const [sliderPosition, setsliderPsition] = useState({ left: "0%" });
 
+  const [sliderPositionVerticaly, setSliderPositionVerticaly] = useState({
+    top: "0%",
+    height:"245px"
+  });
+
   return (
     <Body>
       <div id="splitRow">
@@ -196,6 +219,13 @@ const SignUpOrIn = (props) => {
         </div>
 
         <div className="halfRow">
+          <div id="sliderVert" style={sliderPositionVerticaly}>
+            <p className="sliderTitle">{sliderTitleText}</p>
+            <p id="sliderDescription">{sliderDescriptionText}</p>
+            <div id="changeOption" onClick={SlideVert}>
+              <p id="changeOptionText">{sliderChangeText}</p>
+            </div>
+          </div>
           <p className="sliderTitle">Sign in</p>
           <form onSubmit={handleAuthentification}>
             <label className="fieldName">UserName:</label>

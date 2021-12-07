@@ -32,7 +32,7 @@
 }
 
 .modalWarningDiv > h1{
-    background-color: rgb(17, 17, 128);
+    background-color: rgb(28, 28, 158);
     margin:0px;
     padding-top: 10px;
     padding-bottom:10px;
@@ -48,7 +48,7 @@
 }
 
 .modalWarningDiv >div> button{
-    background-color: rgb(25, 25, 114);
+    background-color: rgb(28, 28, 158);
     color:white;
     font-size: 20px;
     border-style: none;
@@ -60,7 +60,7 @@
 }
 
 #LinkButton{
-    background-color: rgb(25, 25, 114);
+    background-color: rgb(28, 28, 158);
     color:white;
     font-size: 20px;
     border-style: none;

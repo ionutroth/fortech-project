@@ -27,13 +27,21 @@ import GameMenuWrapper from "./Components/GameComponents/GameMenuWrapper.js";
 import GamePlayPage from "./Components/GamePages/GamePlayPage.js";
 import GameLeaderBoard from "./Components/GamePages/GameLeaderBoard.js";
 import GameNewsPage from "./Components/GamePages/GameNewsPage";
-import { collection, getDocs, query, updateDoc, where,doc } from "@firebase/firestore";
-import { db,auth } from "./Firebase";
-import {signOut} from "firebase/auth"
-import AdminPage from './Components/Pages/AboutPage.js'
+import {
+  collection,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+  doc,
+  orderBy,
+  limit,
+} from "@firebase/firestore";
+import { db, auth } from "./Firebase";
+import { signOut } from "firebase/auth";
+import AdminPage from "./Components/Pages/AboutPage.js";
 import GameTeamPage from "./Components/GamePages/GameTeamPage.js";
-import EasyLevel from "./Components/GameLevels/EasyLevel"
-
+import EasyLevel from "./Components/GameLevels/EasyLevel";
 
 function App() {
   const [showModalPolicy, setShowModalPolicy] = useState(false);
@@ -50,8 +58,7 @@ function App() {
   const [currentHighscoreEasy, setCurrentHighscoreEasy] = useState(0);
   const [currentHighscoreNormal, setCurrentHighscoreNormal] = useState(0);
   const [currentHighscoreHard, setCurrentHighscoreHard] = useState(0);
-  const [currentTeam, setCurrentTeam] = useState([])
-
+  const [currentTeam, setCurrentTeam] = useState([]);
 
   const ShowModalPolicy = () => {
     setShowModalPolicy(true);
@@ -87,7 +94,7 @@ function App() {
       value={{
         userLoggedIn: userLoggedIn,
         currentTeam: currentTeam,
-        currentUser:currentUser,
+        currentUser: currentUser,
         currentUsername: currentUsername,
         currentFunds: currentFunds,
         currentEmail: currentEmail,
@@ -99,8 +106,29 @@ function App() {
         Logout: Logout,
         login: async (useremail) => {
           const usersRef = await collection(db, "Users");
-          const user = await query(usersRef, where("email", "==", useremail));
-          const userdetails = await getDocs(user);
+          const userQuery = await query(
+            usersRef,
+            where("email", "==", useremail)
+          );
+          const userdetails = await getDocs(userQuery);
+
+          const leaderboardRef = await collection(db, "Leaderboards");
+          const leaderboardQueryEasy = await query(
+            leaderboardRef,
+            where("User", "==", useremail),
+            where("Difficulty", "==", "Easy"),
+            orderBy("Score", "desc"),
+            limit(1)
+          );
+          const leaderboardEasyScore = await getDocs(leaderboardQueryEasy);
+          leaderboardEasyScore.forEach((doc)=>{
+
+            setCurrentHighscoreEasy(doc.data().Score);
+          })
+          
+          setCurrentHighscoreNormal(0);
+          setCurrentHighscoreHard(0);
+
           userdetails.forEach((doc) => {
             setUserLoggedIn(true);
             setCurrentFunds(doc.data().funds);
@@ -109,25 +137,26 @@ function App() {
             setCurrentEmail(doc.data().email);
             setCurrentCreationDate(doc.data().creationDate);
             setCurrentHeroesNumber(doc.data().heroesNumber);
-            setCurrentHighscoreEasy(doc.data().highscoreEasy);
-            setCurrentHighscoreNormal(doc.data().highscoreNormal);
-            setCurrentHighscoreHard(doc.data().highscoreHard)
+            
+            
             console.log(doc.id, doc.data());
           });
         },
-        UpdateFunds: async (amount) =>{
-          const userRef = doc(db, "Users", currentEmail)
-          const updatedFunds = parseInt(currentFunds-amount)
-          console.log(updatedFunds, currentFunds, amount)
-          await updateDoc(userRef,{
-            funds:updatedFunds
+        UpdateFunds: async (amount) => {
+          const userRef = doc(db, "Users", currentEmail);
+          const updatedFunds = parseInt(currentFunds - amount);
+          console.log(updatedFunds, currentFunds, amount);
+          await updateDoc(userRef, {
+            funds: updatedFunds,
           });
-          setCurrentFunds(updatedFunds)
+          setCurrentFunds(updatedFunds);
         },
-        SaveTeam:(team)=>{
-          setCurrentTeam(team)
-          console.log(currentTeam)
-        }
+        SaveTeam: (team) => {
+          setCurrentTeam(team);
+        },
+        UpdateHeroesNumber: (amount) => {
+          setCurrentHeroesNumber(currentHeroesNumber + amount);
+        },
       }}
     >
       <Router>
@@ -146,14 +175,14 @@ function App() {
               <Route path="leaderboard" element={<GameLeaderBoard />} />
               <Route path="play" element={<GamePlayPage />} />
               <Route path="news" element={<GameNewsPage />} />
-              <Route path="easy" element={<EasyLevel/>} />
+              <Route path="easy" element={<EasyLevel />} />
             </Route>
             <Route path="" element={<Navigate replace to="menu" />} />
             <Route path="settings" element={<GameSettingsPage />} />
             <Route path="account" element={<GameAccountPage />} />
           </Route>
           <Route exact path="/account" element={<AccountPage />} />
-          <Route exact path="/administrate" element={<AdminPage/>} />
+          <Route exact path="/administrate" element={<AdminPage />} />
         </Routes>
         {ReactDOM.createPortal(
           <ModalPolicy

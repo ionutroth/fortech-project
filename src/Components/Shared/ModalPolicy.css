@@ -25,12 +25,12 @@
     width:350px;
     height:250px;
     z-index: 21;
-    background-color: white;
+    background-color: rgb(230, 230, 230);
     border-radius: 20px;
 }
 
 .modalPolicyDiv > h1{
-    background-color: rgb(17, 17, 128);
+    background-color: rgb(28, 28, 158);
     margin:0px;
     padding-top: 10px;
     padding-bottom:10px;
@@ -46,7 +46,7 @@
 }
 
 .modalPolicyDiv > button{
-    background-color: rgb(25, 25, 114);
+    background-color: rgb(28, 28, 158);
     color:white;
     font-size: 20px;
     border-style: none;

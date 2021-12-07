@@ -77,7 +77,7 @@ const AboutDescription = (props) => {
             })
             console.log(currentInfo)
         }
-    }, [props])
+    })
 
     return (
         <div id="aboutDescription">

@@ -4,7 +4,14 @@ import { GiTwoCoins } from "react-icons/gi";
 import { useContext, useState, useEffect } from "react";
 import Credentials from "../../Context/Credentials";
 import { db } from "./../../Firebase.js";
-import { collection, getDocs, query,orderBy } from "@firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  updateDoc,
+  doc,
+} from "@firebase/firestore";
 
 const GameShopPage = () => {
   const ctx = useContext(Credentials);
@@ -32,30 +39,77 @@ const GameShopPage = () => {
           PAttack: doc.data().PhysAttack,
           MAttack: doc.data().MagicAttack,
           HP: doc.data().HP,
-          Speed: doc.data().Speed
+          Speed: doc.data().Speed,
         };
         itemsList.push(shopItem);
-        
       });
       setShopItems(itemsList);
-      setCurrentItems(itemsList)
+      setCurrentItems(itemsList);
     };
 
     FetchShopItems();
 
-    console.log(itemsList)
+    console.log(itemsList);
   }, []);
+
+  const AddFunds = async (amount) => {
+    const userRef = doc(db, "Users", ctx.currentEmail);
+    await updateDoc(userRef, {
+      funds: ctx.currentFunds + amount,
+    });
+    ctx.UpdateFunds(amount * -1);
+  };
 
   return (
     <div id="gameShopPage">
       <div>
         Funds: <span>{ctx.currentFunds}</span>
         <GiTwoCoins style={{ color: "gold" }} />
-        <button id="sortCommonItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Common"))}>Common</button>
-        <button id="sortRareItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Rare"))}>Rare</button>
-        <button id="sortEpicItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Epic"))}>Epic</button>
-        <button id="sortLegendaryItems" onClick={()=>setCurrentItems(shopItems.filter(item=>item.Rarity=="Legendary"))}>Legendary</button>
-        <button id="sortAllItems" onClick={()=>setCurrentItems(shopItems)}>All</button>
+        <button
+          id="sortCommonItems"
+          onClick={() =>
+            setCurrentItems(
+              shopItems.filter((item) => item.Rarity === "Common")
+            )
+          }
+        >
+          Common
+        </button>
+        <button
+          id="sortRareItems"
+          onClick={() =>
+            setCurrentItems(shopItems.filter((item) => item.Rarity === "Rare"))
+          }
+        >
+          Rare
+        </button>
+        <button
+          id="sortEpicItems"
+          onClick={() =>
+            setCurrentItems(shopItems.filter((item) => item.Rarity === "Epic"))
+          }
+        >
+          Epic
+        </button>
+        <button
+          id="sortLegendaryItems"
+          onClick={() =>
+            setCurrentItems(
+              shopItems.filter((item) => item.Rarity === "Legendary")
+            )
+          }
+        >
+          Legendary
+        </button>
+        <button id="sortAllItems" onClick={() => setCurrentItems(shopItems)}>
+          All
+        </button>
+        <button id="sortAllItems" onClick={() => AddFunds(100)}>
+          Add 100 <GiTwoCoins style={{ color: "gold" }} />
+        </button>
+        <button id="sortAllItems" onClick={() => AddFunds(500)}>
+          Add 500 <GiTwoCoins style={{ color: "gold" }} />
+        </button>
       </div>
       <div>
         {currentItems.map((shopItem, index) => {
@@ -75,7 +129,7 @@ const GameShopPage = () => {
               Speed={shopItem.Speed}
               Rarity={shopItem.Rarity}
             />
-          )
+          );
         })}
       </div>
     </div>

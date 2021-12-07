@@ -31,7 +31,7 @@ const ContactPage = () => {
         <div className="contactColumnLeft">
           <img
             src={ProfileImg}
-            alt="Profile picture"
+            alt=""
             className="contactImage"
           />
         </div>

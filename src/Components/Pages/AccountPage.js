@@ -2,9 +2,27 @@ import "./AccountPage.css";
 import Body from "../Shared/Body.js";
 import Credentials from "../../Context/Credentials";
 import { useContext } from "react";
+import { db,auth } from "../../Firebase";
+import { collection, getDocs, deleteDoc,doc } from "@firebase/firestore";
+import { useNavigate } from "react-router";
+import { deleteUser } from "@firebase/auth";
+
 
 const AccountPage = () => {
   const ctx = useContext(Credentials);
+  const navigate = useNavigate();
+
+  const DeleteAccount = async() =>{
+    await deleteDoc(doc(db, "Users", ctx.currentEmail));
+    ctx.Logout();
+    const user = auth.currentUser;
+    await deleteUser(user).then(()=>{
+      alert("account deleted")
+    }).catch((error)=>{
+      alert(error.message)
+    })
+    navigate("/")
+  }
 
   return (
     <Body>
@@ -25,7 +43,7 @@ const AccountPage = () => {
         <h1>Posible actions</h1>
         <hr/>
         <button id="editAccount">Edit account</button>
-      <button id="deleteAccount">Delete account</button>
+      <button id="deleteAccount" onClick={DeleteAccount}>Delete account</button>
       </div>
       
       

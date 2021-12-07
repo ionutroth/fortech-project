@@ -46,10 +46,10 @@ const GameInventoryPage = () => {
       <div>
         Funds: <span>{ctx.currentFunds}</span>
         <GiTwoCoins style={{ color: "gold" }} />
-        <button id="sortCommonItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Common"))}}>Common</button>
-        <button id="sortRareItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Rare"))}}>Rare</button>
-        <button id="sortEpicItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Epic"))}}>Epic</button>
-        <button id="sortLegendaryItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity == "Legendary"))}}>Legendary</button>
+        <button id="sortCommonItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity === "Common"))}}>Common</button>
+        <button id="sortRareItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity === "Rare"))}}>Rare</button>
+        <button id="sortEpicItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity === "Epic"))}}>Epic</button>
+        <button id="sortLegendaryItems" onClick={()=>{setCurrentItems(inventoryItemsList.filter(item=> item.Rarity === "Legendary"))}}>Legendary</button>
         <button id="sortAllItems" onClick={()=>{setCurrentItems(inventoryItemsList)}}>All</button>
       </div>
       <div>

@@ -7,7 +7,7 @@ import Warrior from "../../Assets/Warrior.png";
 import Wizzard from "../../Assets/Wizzard.png";
 import { db } from "../../Firebase.js";
 import Credentials from "../../Context/Credentials";
-import { addDoc, collection, doc, setDoc } from "@firebase/firestore";
+import { addDoc, collection, updateDoc,doc } from "@firebase/firestore";
 
 const GameShopItem = (props) => {
   const [display, setDisplay] = useState("none");
@@ -15,9 +15,9 @@ const GameShopItem = (props) => {
   const ctx = useContext(Credentials);
 
   useEffect(() => {
-    if (props.Image == "Cleric") {
+    if (props.Image === "Cleric") {
       setImage(Cleric);
-    } else if (props.Image == "Warrior") {
+    } else if (props.Image === "Warrior") {
       setImage(Warrior);
     } else {
       setImage(Wizzard);
@@ -33,21 +33,24 @@ const GameShopItem = (props) => {
   };
 
   const BuyItem = async () => {
-    
-      await addDoc(collection(db, "Heroes"), {
-        Owner: ctx.currentEmail,
-        Value: props.Price,
-        Class: props.Name,
-        MagicArmor: props.MagicArmor,
-        PhysArmor: props.PhysArmor,
-        MagicAttack: props.MagicAttack,
-        PhysAttack: props.PhysAttack,
-        HP: props.HP,
-        Rarity: props.Rarity,
-        Speed: props.Speed,
-      });
-      ctx.UpdateFunds(props.Price);
-     
+    await addDoc(collection(db, "Heroes"), {
+      Owner: ctx.currentEmail,
+      Value: props.Price,
+      Class: props.Name,
+      MagicArmor: props.MagicArmor,
+      PhysArmor: props.PhysArmor,
+      MagicAttack: props.MagicAttack,
+      PhysAttack: props.PhysAttack,
+      HP: props.HP,
+      Rarity: props.Rarity,
+      Speed: props.Speed,
+    });
+    ctx.UpdateFunds(props.Price);
+    const userRef =  doc(db,"Users", ctx.currentEmail);
+    await updateDoc(userRef,{
+      heroesNumber: ctx.currentHeroesNumber+1
+    });
+    ctx.UpdateHeroesNumber(1)
   };
 
   return (
@@ -58,7 +61,7 @@ const GameShopItem = (props) => {
       >
         <div className={props.InnerStyle}>
           <h5>{props.Name}</h5>
-          <img src={image}/>
+          <img src={image} />
           <p>
             <b>{props.Price} </b>
             <GiTwoCoins size={10} />

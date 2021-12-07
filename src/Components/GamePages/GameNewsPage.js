@@ -14,15 +14,9 @@ const GameNewsPage = () => {
       const newsDocs = await getDocs(newsQueried);
       let newsList = [];
       newsDocs.forEach((doc) => {
-        let date = new Date(doc.data().Date.seconds);
-        var dd = String(date.getDate()).padStart(2, "0");
-        var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
-        var yyyy = date.getFullYear();
-        let articleDate = dd+"\\"+mm+"\\"+yyyy;
         let article = {
           Title: doc.data().Title,
           Description: doc.data().Description,
-          DateAdded: articleDate,
         };
         newsList.push(article);
 

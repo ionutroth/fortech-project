@@ -11,9 +11,9 @@ const GameTeamItem = (props) =>{
     const [displayValue, setDisplayValue] = useState("none")
 
     useEffect(() => {
-        if (props.Class=="Warrior"){
+        if (props.Class==="Warrior"){
             setImage(Warrior)
-        }else if(props.Class=="Wizzard"){
+        }else if(props.Class==="Wizzard"){
             setImage(Wizzard)
         }else(
             setImage(Cleric)

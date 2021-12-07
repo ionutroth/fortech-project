@@ -1,6 +1,6 @@
 import "./GameTeamPage.css";
 import { db } from "../../Firebase";
-import { collection, doc, getDocs, query, where } from "@firebase/firestore";
+import { collection,  getDocs, query, where } from "@firebase/firestore";
 import { useEffect, useState, useContext } from "react";
 import Credentials from "../../Context/Credentials";
 import GameAvailableItem from "../GameComponents/GameAvailableItem";
@@ -71,7 +71,7 @@ const GameTeamPage = () => {
           id="sortCommonItems"
           onClick={() => {
             setCurrentItems(
-              availableItems.filter((item) => item.Rarity == "Common")
+              availableItems.filter((item) => item.Rarity === "Common")
             );
             setCurrentFilter("Common");
           }}
@@ -82,7 +82,7 @@ const GameTeamPage = () => {
           id="sortRareItems"
           onClick={() => {
             setCurrentItems(
-              availableItems.filter((item) => item.Rarity == "Rare")
+              availableItems.filter((item) => item.Rarity === "Rare")
             );
             setCurrentFilter("Rare");
           }}
@@ -93,7 +93,7 @@ const GameTeamPage = () => {
           id="sortEpicItems"
           onClick={() => {
             setCurrentItems(
-              availableItems.filter((item) => item.Rarity == "Epic")
+              availableItems.filter((item) => item.Rarity === "Epic")
             );
             setCurrentFilter("Epic");
           }}
@@ -104,7 +104,7 @@ const GameTeamPage = () => {
           id="sortLegendaryItems"
           onClick={() => {
             setCurrentItems(
-              availableItems.filter((item) => item.Rarity == "Legendary")
+              availableItems.filter((item) => item.Rarity === "Legendary")
             );
             setCurrentFilter("Legendary");
           }}

@@ -40,13 +40,13 @@ const HomePage = () => {
           </Link>
         </div>
         <div>
-          <img src={Welcome} />
+          <img src={Welcome} alt="" />
         </div>
       </div>
       <hr />
       <div className="homePageOption" id="homePageOptionInversed">
         <div>
-          <img src={Game} />
+          <img src={Game}  alt=""/>
         </div>
         <div>
           <h1>The game</h1>
@@ -67,7 +67,7 @@ const HomePage = () => {
           {redirectionLink()}
         </div>
         <div>
-          <img src={Game} />
+          <img src={Game}  alt=""/>
         </div>
       </div>
       <hr />
@@ -80,7 +80,7 @@ const HomePage = () => {
           </Link>
         </div>
         <div>
-          <img src={Contact} />
+          <img src={Contact} alt="" />
         </div>
       </div>
     </Body>

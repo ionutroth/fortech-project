@@ -5,6 +5,11 @@
     flex-direction: row;
 }
 
+#gameLeaderboardWrapper p{
+    margin:5px 0px;
+    text-align:center
+}
+
 #gameLeaderboardWrapper > div{
     width: 33.33%;
     height:100%;
@@ -12,7 +17,20 @@
     border-right-style: solid;
     border-right-color: white;
     border-right-width: 3px;
+}
 
+#gameLeaderboardWrapper > div > :nth-child(2){
+    color:Gold;
+    font-size:25px
+}
+
+#gameLeaderboardWrapper > div > :nth-child(3){
+    color:rgb(189, 189, 189);
+    font-size:23px
+}
+#gameLeaderboardWrapper > div > :nth-child(4){
+    color:rgb(197, 130, 43);
+    font-size:20px
 }
 
 #gameLeaderboardWrapper  h3{
