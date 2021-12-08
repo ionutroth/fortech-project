@@ -37,7 +37,8 @@ const AboutDescription = (props) => {
     })
 
     useEffect(() => {
-        if (props.selectedOption === "frontend") {
+        console.log("ceva")
+        if (props.selectedOption === "frontend"){
             setCurrentInfo(() => {
                 return {
                     currentTitle: info.frontend.title,
@@ -77,7 +78,7 @@ const AboutDescription = (props) => {
             })
             console.log(currentInfo)
         }
-    })
+    },[props])
 
     return (
         <div id="aboutDescription">

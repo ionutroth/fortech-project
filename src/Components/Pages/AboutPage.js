@@ -23,7 +23,7 @@ const About = () => {
             id="tableUpperLeft"
             className="tableCell"
             onClick={() => setOption("frontend")}
-            onMouseEnter={() => setHoverImage(react_image)}
+            onMouseEnter={() => {setHoverImage(react_image)}}
             onMouseLeave={() => setHoverImage(project_image)}
           >
             <p className="tableCellTitle">Frontend</p>

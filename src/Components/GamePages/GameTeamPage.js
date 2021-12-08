@@ -1,6 +1,6 @@
 import "./GameTeamPage.css";
 import { db } from "../../Firebase";
-import { collection,  getDocs, query, where } from "@firebase/firestore";
+import { collection, getDocs, query, where } from "@firebase/firestore";
 import { useEffect, useState, useContext } from "react";
 import Credentials from "../../Context/Credentials";
 import GameAvailableItem from "../GameComponents/GameAvailableItem";
@@ -9,18 +9,18 @@ import { useNavigate } from "react-router";
 
 const GameTeamPage = () => {
   const ctx = useContext(Credentials);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [teamItems, setTeamItems] = useState([]); // All the team units
   const [availableItems, setAvailableItems] = useState([]); // All available items
   const [currentItems, setCurrentItems] = useState([]); // All the items that are currently shown
-  const [currenFilter, setCurrentFilter] = useState(""); // Filters the items with toolbar buttons
+  const [currentFilter, setCurrentFilter] = useState(""); // Filters the items with toolbar buttons
 
-  useEffect(()=>{
-    if( !ctx.userLoggedIn){
+  useEffect(() => {
+    if (!ctx.userLoggedIn) {
       navigate("/");
-      alert("Hey!")
+      alert("Hey!");
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     // Fetch all items from the database for the specific user.
@@ -48,15 +48,14 @@ const GameTeamPage = () => {
       });
       setAvailableItems(itemsList);
 
-      let aux1= itemsList;
-      let aux2= [];
-      ctx.currentTeam.forEach((item)=>{
-        aux1 = aux1.filter(obj=>obj.Id !==item.Id)
-        aux2.push(item)
-      })
-      setCurrentItems(aux1)
-      setTeamItems(aux2)
-
+      let aux1 = itemsList;
+      let aux2 = [];
+      ctx.currentTeam.forEach((item) => {
+        aux1 = aux1.filter((obj) => obj.Id !== item.Id);
+        aux2.push(item);
+      });
+      setCurrentItems(aux1);
+      setTeamItems(aux2);
     };
 
     FetchAvailableItems();
@@ -67,11 +66,13 @@ const GameTeamPage = () => {
     teamItems.forEach((item) => {
       aux = aux.filter((obj) => obj.Id !== item.Id);
     });
-    if(currenFilter!==""){
-      aux = aux.filter((obj)=>obj.Id !== currenFilter)
+    if (currentFilter !== "") {
+      aux = aux.filter((obj) => obj.Id !== currentFilter);
     }
-    setCurrentItems(aux)
+    setCurrentItems(aux);
   }, [teamItems]);
+
+  useEffect(() => {}, [currentFilter]);
 
   return (
     <div id="gameTeamPage">
@@ -79,9 +80,15 @@ const GameTeamPage = () => {
         <button
           id="sortCommonItems"
           onClick={() => {
-            setCurrentItems(
-              availableItems.filter((item) => item.Rarity === "Common")
+            let filteredItems = availableItems;
+            teamItems.forEach((item) => {
+              filteredItems = filteredItems.filter((obj) => obj.Id !== item.Id);
+            });
+            filteredItems = filteredItems.filter(
+              (obj) => obj.Rarity === "Common"
             );
+            setCurrentItems(filteredItems);
+            console.log(filteredItems);
             setCurrentFilter("Common");
           }}
         >
@@ -90,9 +97,15 @@ const GameTeamPage = () => {
         <button
           id="sortRareItems"
           onClick={() => {
-            setCurrentItems(
-              availableItems.filter((item) => item.Rarity === "Rare")
+            let filteredItems = availableItems;
+            teamItems.forEach((item) => {
+              filteredItems = filteredItems.filter((obj) => obj.Id !== item.Id);
+            });
+            filteredItems = filteredItems.filter(
+              (obj) => obj.Rarity === "Rare"
             );
+            setCurrentItems(filteredItems);
+            console.log(filteredItems);
             setCurrentFilter("Rare");
           }}
         >
@@ -101,9 +114,15 @@ const GameTeamPage = () => {
         <button
           id="sortEpicItems"
           onClick={() => {
-            setCurrentItems(
-              availableItems.filter((item) => item.Rarity === "Epic")
+            let filteredItems = availableItems;
+            teamItems.forEach((item) => {
+              filteredItems = filteredItems.filter((obj) => obj.Id !== item.Id);
+            });
+            filteredItems = filteredItems.filter(
+              (obj) => obj.Rarity === "Epic"
             );
+            setCurrentItems(filteredItems);
+            console.log(filteredItems);
             setCurrentFilter("Epic");
           }}
         >
@@ -112,9 +131,15 @@ const GameTeamPage = () => {
         <button
           id="sortLegendaryItems"
           onClick={() => {
-            setCurrentItems(
-              availableItems.filter((item) => item.Rarity === "Legendary")
+            let filteredItems = availableItems;
+            teamItems.forEach((item) => {
+              filteredItems = filteredItems.filter((obj) => obj.Id !== item.Id);
+            });
+            filteredItems = filteredItems.filter(
+              (obj) => obj.Rarity === "Legendary"
             );
+            setCurrentItems(filteredItems);
+            console.log(filteredItems);
             setCurrentFilter("Legendary");
           }}
         >
@@ -123,7 +148,11 @@ const GameTeamPage = () => {
         <button
           id="sortAllItems"
           onClick={() => {
-            setCurrentItems(availableItems);
+            let filteredItems = availableItems;
+            teamItems.forEach((item) => {
+              filteredItems = filteredItems.filter((obj) => obj.Id !== item.Id);
+            });
+            setCurrentItems(filteredItems);
             setCurrentFilter("");
           }}
         >
@@ -148,13 +177,13 @@ const GameTeamPage = () => {
               Class={teamItem.Class}
               Unequip={() => {
                 let aux1 = teamItems;
-                aux1 = aux1.filter(obj => obj.Id !== teamItem.Id)
+                aux1 = aux1.filter((obj) => obj.Id !== teamItem.Id);
                 setTeamItems(aux1);
 
                 let aux2 = currentItems;
-                if (currenFilter === "") {
+                if (currentFilter === "") {
                   aux2.push(teamItem);
-                } else if (currenFilter === teamItem.Rarity) {
+                } else if (currentFilter === teamItem.Rarity) {
                   aux2.push(teamItem);
                 }
                 setCurrentItems(aux2);
@@ -189,7 +218,7 @@ const GameTeamPage = () => {
                   aux2.push(availableItem);
                   setTeamItems(aux2);
 
-                  console.log(teamItems, currentItems)
+                  console.log(teamItems, currentItems);
                 } else {
                   alert("Team limit reached! Remove an unit to add another.");
                 }
