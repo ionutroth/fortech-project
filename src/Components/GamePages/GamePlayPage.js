@@ -1,7 +1,13 @@
 import "./GamePlayPage.css";
-import { useState } from "react";
+import { useState,useEffect,useContext } from "react";
+import Credentials from "../../Context/Credentials";
+import { useNavigate } from "react-router";
+import { GiDeathSkull,GiBroadsword,GiAxeSword } from "react-icons/gi";
 
 const GamePlayPage = () => {
+  const ctx = useContext(Credentials);
+  const navigate = useNavigate();
+  const [playButtonDisabled, setPlayButtonDisabled] = useState(true);
   const [bonuses, setBonuses] = useState({
     easy: false,
     normal: false,
@@ -14,23 +20,32 @@ const GamePlayPage = () => {
       normal: false,
       hard: false,
     });
+    setPlayButtonDisabled(false);
   };
 
   const SetDifficultyNormal = () => {
-    setBonuses({
-      easy: false,
-      normal: true,
-      hard: false,
-    });
+    alert("Sorry! This difficulty is not yet implemented...")
   };
 
   const SetDifficultyHard = () => {
-    setBonuses({
-      easy: false,
-      normal: false,
-      hard: true,
-    });
+    alert("Sorry! This difficulty is not yet implemented...")
   };
+
+  useEffect(()=>{
+    if( !ctx.userLoggedIn){
+      navigate("/");
+      alert("Hey!")
+    }
+  },[])
+
+  const Play = () =>{
+    if (ctx.currentTeam.length>0){
+      navigate("/game/menu/easy")
+    }else{
+      alert("Pick a team first.")
+    }
+    
+  }
 
   return (
     <div id="gamePlayPage">
@@ -56,23 +71,24 @@ const GamePlayPage = () => {
           className={"difficulty " + (bonuses.easy ? "activated" : "")}
           onClick={SetDifficultyEasy}
         >
-          Easy
+          <GiBroadsword/> Easy <GiBroadsword/> 
         </div>
         <div
           id="normal"
           className={"difficulty " + (bonuses.normal ? "activated" : "")}
           onClick={SetDifficultyNormal}
         >
-          Normal
+          <GiAxeSword size={24} /> Normal <GiAxeSword size={24}/> 
+          
         </div>
         <div
           id="hard"
           className={"difficulty " + (bonuses.hard ? "activated" : "")}
           onClick={SetDifficultyHard}
         >
-          Hard
+          <GiDeathSkull/> Hard <GiDeathSkull/>
         </div>
-        <button id="startButton" disabled>
+        <button id="startButton" disabled={playButtonDisabled} onClick={Play} >
           Start
         </button>
       </div>

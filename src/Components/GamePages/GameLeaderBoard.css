@@ -1,58 +1,119 @@
-#gameLeaderboardWrapper{
-    display:flex;
-    width:100%;
-    height: 100%;
-    flex-direction: row;
+#gameLeaderboardWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
 }
 
-#gameLeaderboardWrapper p{
-    margin:5px 0px;
-    text-align:center
+#gameLeaderboardWrapper p {
+  margin: 5px 0px;
+  text-align: center;
 }
 
-#gameLeaderboardWrapper > div{
-    width: 33.33%;
-    height:100%;
-    background-color: gray;
-    border-right-style: solid;
-    border-right-color: white;
-    border-right-width: 3px;
+#gameLeaderboardWrapper > div {
+  width: 33.33%;
+  height: 100%;
+  background-color: gray;
+  border-right-style: solid;
+  border-right-color: white;
+  border-right-width: 3px;
+  display: flex;
+  flex-direction: column;
 }
 
-#gameLeaderboardWrapper > div > :nth-child(2){
-    color:Gold;
-    font-size:25px
+#scoresEasy > :nth-child(1) {
+  color: Gold;
+  font-size: 25px;
 }
 
-#gameLeaderboardWrapper > div > :nth-child(3){
-    color:rgb(189, 189, 189);
-    font-size:23px
+#scoresEasy > :nth-child(2) {
+  color: rgb(189, 189, 189);
+  font-size: 23px;
 }
-#gameLeaderboardWrapper > div > :nth-child(4){
-    color:rgb(197, 130, 43);
-    font-size:20px
-}
-
-#gameLeaderboardWrapper  h3{
-    color:rgb(220, 235, 15);
-    padding:19px 0px;
-    text-align: center;
-    background-color: rgb(75, 75, 75);
-    margin:0px;
+#scoresEasy > :nth-child(3) {
+  color: rgb(197, 130, 43);
+  font-size: 20px;
 }
 
-#gameLeaderboardWrapper  h2{
-    color:rgb(231, 108, 6);
-    padding:15.5px 0px;
-    text-align: center;
-    background-color: rgb(75, 75, 75);
-    margin:0px;
+#scoresNormal > :nth-child(1) {
+  color: Gold;
+  font-size: 25px;
+}
+#scoresNormal > :nth-child(2) {
+  color: rgb(189, 189, 189);
+  font-size: 23px;
+}
+#scoresNormal > :nth-child(3) {
+  color: rgb(197, 130, 43);
+  font-size: 20px;
 }
 
-#gameLeaderboardWrapper  h1{
-    color:rgb(231, 0, 0);
-    padding:10px 0px;
-    margin:0px;
-    text-align: center;
-    background-color: rgb(75, 75, 75);
+#scoresHard > :nth-child(1) {
+  color: Gold;
+  font-size: 25px;
 }
+#scoresHard > :nth-child(2) {
+  color: rgb(189, 189, 189);
+  font-size: 23px;
+}
+#scoresHard > :nth-child(3) {
+  color: rgb(197, 130, 43);
+  font-size: 20px;
+}
+
+#scoresEasy{
+    height:75%
+}
+
+#scoresNormal{
+    height:75%
+}
+
+#scoresHard{
+    height:75%
+}
+
+#gameLeaderboardWrapper h3 {
+  color: rgb(220, 235, 15);
+  padding: 19px 0px;
+  text-align: center;
+  background-color: rgb(75, 75, 75);
+  margin: 0px;
+}
+
+#gameLeaderboardWrapper h2 {
+  color: rgb(231, 108, 6);
+  padding: 15.5px 0px;
+  text-align: center;
+  background-color: rgb(75, 75, 75);
+  margin: 0px;
+}
+
+#gameLeaderboardWrapper h1 {
+  color: rgb(231, 0, 0);
+  padding: 10px 0px;
+  margin: 0px;
+  text-align: center;
+  background-color: rgb(75, 75, 75);
+}
+
+.personalBest {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  background-color: rgb(97, 97, 97);
+  flex-direction: column;
+  text-align: center;
+}
+
+.personalBest > p {
+    margin: 5px 0px;
+    color:white;
+    font-size: 25px;
+  }
+
+  .personalBest > h5 {
+    margin: 15px 0px;
+    color:rgb(29, 29, 29);
+    font-size: 18px;
+  }

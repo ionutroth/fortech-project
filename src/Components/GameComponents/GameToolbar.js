@@ -7,9 +7,6 @@ const GameToolbar = () => {
       <Link to={"menu"} className="toolbarGameItem">
         Main menu
       </Link>
-      <Link to={"settings"} className="toolbarGameItem">
-        Settings
-      </Link>
       <Link to={"account"} className="toolbarGameItem">
         Account
       </Link>

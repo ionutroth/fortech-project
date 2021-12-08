@@ -5,13 +5,22 @@ import { useEffect, useState, useContext } from "react";
 import Credentials from "../../Context/Credentials";
 import GameAvailableItem from "../GameComponents/GameAvailableItem";
 import GameTeamItem from "../GameComponents/GameTeamItem";
+import { useNavigate } from "react-router";
 
 const GameTeamPage = () => {
   const ctx = useContext(Credentials);
+  const navigate = useNavigate()
   const [teamItems, setTeamItems] = useState([]); // All the team units
   const [availableItems, setAvailableItems] = useState([]); // All available items
   const [currentItems, setCurrentItems] = useState([]); // All the items that are currently shown
   const [currenFilter, setCurrentFilter] = useState(""); // Filters the items with toolbar buttons
+
+  useEffect(()=>{
+    if( !ctx.userLoggedIn){
+      navigate("/");
+      alert("Hey!")
+    }
+  },[])
 
   useEffect(() => {
     // Fetch all items from the database for the specific user.

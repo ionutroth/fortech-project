@@ -33,7 +33,8 @@ const GameShopItem = (props) => {
   };
 
   const BuyItem = async () => {
-    await addDoc(collection(db, "Heroes"), {
+    if (props.Price<=ctx.currentFunds){
+      await addDoc(collection(db, "Heroes"), {
       Owner: ctx.currentEmail,
       Value: props.Price,
       Class: props.Name,
@@ -51,6 +52,10 @@ const GameShopItem = (props) => {
       heroesNumber: ctx.currentHeroesNumber+1
     });
     ctx.UpdateHeroesNumber(1)
+    }else{
+      alert("Not enough funds.")
+    }
+    
   };
 
   return (

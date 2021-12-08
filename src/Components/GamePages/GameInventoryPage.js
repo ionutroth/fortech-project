@@ -5,11 +5,20 @@ import { db } from "../../Firebase";
 import { collection, getDocs, query, where } from "@firebase/firestore";
 import GameInventoryItem from "../GameComponents/GameInventoryItem";
 import { GiTwoCoins } from "react-icons/gi";
+import { useNavigate } from "react-router";
 
 const GameInventoryPage = () => {
   const ctx = useContext(Credentials);
   const [inventoryItemsList, setInventoryItemsList] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if( !ctx.userLoggedIn){
+      navigate("/");
+      alert("Hey!")
+    }
+  },[])
 
   useEffect(() => {
     const FetchInventory = async () => {

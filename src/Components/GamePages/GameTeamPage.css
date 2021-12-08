@@ -40,6 +40,9 @@
     display:flex;
     flex-direction: row;
     align-items: center;
+    border-top-style: solid;
+    border-top-color: white;
+    border-top-width:3px
 }
 
 #SaveTeam{

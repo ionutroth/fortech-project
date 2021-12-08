@@ -2,10 +2,12 @@ import Wizzard from "../../Assets/Wizzard.png";
 import Cleric from "../../Assets/Cleric.png";
 import Warrior from "../../Assets/Warrior.png";
 import "./EasyLevel.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import EasyLevelBoss from "../../Assets/easy_level_boss.png";
 import Credentials from "../../Context/Credentials.js";
 import { useNavigate } from "react-router";
+import { setDoc,doc } from "@firebase/firestore";
+import { db } from "../../Firebase";
 
 const EasyLevel = () => {
   const ctx = useContext(Credentials);
@@ -14,9 +16,16 @@ const EasyLevel = () => {
   const [menuTitle, setMenuTitle] = useState("Try and beat the boss");
   let navigate = useNavigate();
 
+  useEffect(() => {
+    if(!ctx.userLoggedIn){
+      navigate("/")
+      alert("HEY!")
+    }
+  }, [])
+
   const BOSS_STATS = {
     Class: "Boss",
-    HP: 1000,
+    HP: 500,
     Speed: 350,
     PhysArmor: 25,
     PhysAttack: 70,
@@ -24,41 +33,19 @@ const EasyLevel = () => {
     MagicArmor: 30,
   };
 
-  const DUMMY_TEAM = [
-    {
-      Class: "Wizzard",
-      HP: 100,
-      Speed: 50,
-      PhysArmor: 30,
-      MagicArmor: 30,
-      MagicAttack: 100,
-      PhysAttack: 100,
-    },
-    {
-      Class: "Warrior",
-      HP: 100,
-      Speed: 20,
-      PhysArmor: 30,
-      MagicArmor: 30,
-      MagicAttack: 100,
-      PhysAttack: 100,
-    },
-    {
-      Class: "Cleric",
-      HP: 100,
-      Speed: 40,
-      PhysArmor: 30,
-      MagicArmor: 30,
-      MagicAttack: 100,
-      PhysAttack: 100,
-    },
-  ];
+  const AddScore = async(score) =>{
+    await setDoc(doc(db, "Leaderboards"),{
+      User: ctx.currentEmail,
+      Score: score,
+      Difficulty: "Easy"
+    })
+  }
 
   // Start Game
   const StartGame = () => {
     //vars
     let matchStatus = "running";
-    let StatsOrder = DUMMY_TEAM;
+    let StatsOrder = ctx.currentTeam;
     let currentStatsIndex = 5;
     let roundNumber = 0;
     let clearNode = document.getElementById("battleLog");
@@ -155,6 +142,7 @@ const EasyLevel = () => {
           document.getElementById("battleLog").appendChild(node);
           setDisplayRedirections("block");
           setDisplayStart("none");
+          setMenuTitle("LOSS")
         } else {
           newHeroesStats.push(bossStats);
           StatsOrder = newHeroesStats
@@ -203,6 +191,14 @@ const EasyLevel = () => {
         // Check if boss is dead
         if (bossStats.HP <= 0) {
           matchStatus = "win";
+          let score = 0;
+          heroesStats.forEach((hero)=>{
+            score = score + hero.HP
+          })
+
+          setMenuTitle("WIN!")
+
+          
           let node = document.createElement("P");
           node.className = "systemFont";
           let textNode = document.createTextNode("The boss is dead! You win!");
@@ -210,6 +206,21 @@ const EasyLevel = () => {
           document.getElementById("battleLog").appendChild(node);
           setDisplayRedirections("block");
           setDisplayStart("none");
+
+          console.log(score)
+
+          if(score>ctx.currentHighscoreEasy){
+            let node = document.createElement("P");
+            node.className = "systemFont";
+            let textNode = document.createTextNode("NEW HIGHSCORE!");
+            node.appendChild(textNode);
+            document.getElementById("battleLog").appendChild(node);
+            ctx.NewHighScoreEasy(score)
+
+            AddScore(score);
+            setMenuTitle("WIN! NEW HIGHSCORE")
+          }
+
         } else {
           heroesStats.push(bossStats);
           StatsOrder = heroesStats
@@ -234,7 +245,7 @@ const EasyLevel = () => {
     <div id="easyLevel">
       <div id="sceneBody">
         <div className="sceneBodySides">
-          {DUMMY_TEAM.map((item, index) => {
+          {ctx.currentTeam.map((item, index) => {
             let image;
             if (item.Class === "Wizzard") {
               image = Wizzard;

@@ -11,8 +11,14 @@
     font-size:15px;
     align-self:center;
     color:white;
-    width:25%;
+    width:33.33%;
     text-align: center;
     cursor:pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.toolbarGameItem:hover{
+    background-color:white ;
+    color:rgb(9, 9, 49)
 }
 

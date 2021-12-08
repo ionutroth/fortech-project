@@ -1,21 +1,64 @@
-#AccountPage > h1{
-    color: white;
+#AccountPage > h1 {
+  color: white;
 }
 
-#deleteAccount{
-    background-color: red;
-    border-style: none;
-    padding: 10px;
-    color: white;
-    font-size: 20px;
-    margin:0px 10px
+#AccountPage > div {
+  width: 100%;
+}
+#AccountPage > div > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
 }
 
-#editAccount{
-    background-color: blue;
-    border-style: none;
+#formButtonGroup{
+    display:flex;
+    flex-direction: row;
+}
+
+#formButtonGroup>button{
+    background-color: rgb(28, 28, 158);
     padding: 10px;
+    border-style: none;
     color: white;
-    font-size: 20px;
-    margin:0px 10px
+    width:100px;
+    height:35px;
+    margin:10px;
+    cursor: pointer;
+}
+
+#AccountPage input[type="text"] {
+  width: 300px;
+}
+#AccountPage input[type="submit"] {
+  background-color: rgb(28, 28, 158);
+  padding: 10px;
+  border-style: none;
+  color: white;
+  width:100px;
+  height:35px;
+  margin:10px;
+  cursor: pointer;
+  
+}
+#deleteAccount {
+  background-color: red;
+  border-style: none;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  margin: 0px 10px;
+  cursor: pointer;
+}
+
+#editAccount {
+  background-color: blue;
+  border-style: none;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  margin: 0px 10px;
+  cursor: pointer;
 }

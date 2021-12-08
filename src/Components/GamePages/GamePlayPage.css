@@ -32,8 +32,9 @@
 }
 
 #startButton:disabled{
-    background-color: rgb(124, 124, 180);
+    background-color: rgb(231, 231, 231);
     color: blue;
+    cursor: not-allowed;
 }
 
 #gamePlayPage > *{
@@ -44,8 +45,7 @@
 }
 
 .difficulty{
-    padding: 20px 50px;
-    background-color: brown;
+    padding: 10px 10px;
     color:white;
     font-size: 40px;
     cursor: pointer;
@@ -57,6 +57,18 @@
 
 .activated{
     border-style: solid;
-    border-width: 10px;
-    border-color: rgb(139, 3, 3);
+    border-width: 3px;
+    border-color: rgb(26, 21, 21);
+}
+
+#easy{
+    background-color: rgb(11, 111, 11);
+}
+
+#normal{
+    background-color: rgb(179, 104, 24);
+}
+
+#hard{
+    background-color: rgb(94, 14, 14);
 }

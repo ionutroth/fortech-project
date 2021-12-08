@@ -10,12 +10,12 @@ const AboutDescription = (props) => {
     const info = {
         frontend: {
             title: "The frontend",
-            description: "For this project I used React. One of the most popular JS frameworks, developed by Facebook. In this project it was used mostly Vanilla React with some ReactBootstrap components.",
+            description: "For this project I used React , currently, one of the most popular JS frameworks, developed by Facebook. In this project I used for styling mostly vanilla HTML and CSS with few elements of ReactBootstrap and Icons. For routing, the project uses react-router and react-router-dom version 6. Due to the relative small size of the project I chose to go with useContext as a method to store global variables and states, as an alternative to Redux.",
             image: react_image
         },
         backend: {
             title: "The backend",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            description: "For this project I used Firebase, an online NoSQL database and backend API. The data stored in this database refers to user data, highscores, shop options, news and user owned items. The project is structured in a way that can minimize the number of requests a user can make by visiting different pages.",
             image: firebase_image
         },
         theme: {

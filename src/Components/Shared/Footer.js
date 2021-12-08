@@ -14,7 +14,7 @@ const Footer = (props) => {
       <p>Fortech project</p>
       <p>{year}</p>
       <p>
-        <b onClick={() => props.ShowModal()}>Policy agreement</b>
+        <b style={{cursor:"pointer"}} onClick={() => props.ShowModal()}>Policy agreement</b>
       </p>
     </div>
   );

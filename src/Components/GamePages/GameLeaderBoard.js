@@ -8,12 +8,23 @@ import {
   where,
   getDocs,
 } from "@firebase/firestore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Credentials from "../../Context/Credentials";
+import { useNavigate } from "react-router";
 
 const GameLeaderBoard = () => {
+  let ctx = useContext(Credentials);
+  const navigate = useNavigate()
   const [scoresEasyList, setScoresEasyList] = useState([]);
   const [scoresNormalList, setScoresNormalList] = useState([]);
   const [scoresHardList, setScoresHardList] = useState([]);
+
+  useEffect(()=>{
+    if( !ctx.userLoggedIn){
+      navigate("/");
+      alert("Hey!")
+    }
+  },[])
 
   useEffect(async () => {
     const scoresRef = await collection(db, "Leaderboards");
@@ -68,47 +79,71 @@ const GameLeaderBoard = () => {
       scoresHard.push(score);
     });
 
-    scoresEasy.sort((a, b) =>
-      a.score > b.score ? 1 : b.score > a.score ? -1 : 0
-    ).reverse();
-    scoresNormal.sort((a, b) =>
-      a.score > b.score ? 1 : b.score > a.score ? -1 : 0
-    ).reverse();
-    scoresHard.sort((a, b) =>
-      a.score > b.score ? 1 : b.score > a.score ? -1 : 0
-    ).reverse();
+    scoresEasy
+      .sort((a, b) => (a.score > b.score ? 1 : b.score > a.score ? -1 : 0))
+      .reverse();
+    scoresNormal
+      .sort((a, b) => (a.score > b.score ? 1 : b.score > a.score ? -1 : 0))
+      .reverse();
+    scoresHard
+      .sort((a, b) => (a.score > b.score ? 1 : b.score > a.score ? -1 : 0))
+      .reverse();
 
-    setScoresEasyList(scoresEasy)
-    setScoresNormalList(scoresNormal)
-    setScoresHardList(scoresHard)
-    console.log(scoresEasyList)
+    setScoresEasyList(scoresEasy);
+    setScoresNormalList(scoresNormal);
+    setScoresHardList(scoresHard);
+    console.log(scoresEasyList);
   }, []);
 
   return (
     <div id="gameLeaderboardWrapper">
       <div>
         <h3> EASY</h3>
-        {scoresEasyList.map((score,index)=>{
-          return(
-            <p key={index}>{index+1}. {score.score} {score.user}</p>
-          )
-        })}
+        <div id="scoresEasy">
+          {scoresEasyList.map((score, index) => {
+            return (
+              <p key={index}>
+                {index + 1}. {score.score} {score.user}
+              </p>
+            );
+          })}
+        </div>
+        <div className="personalBest">
+          <h5>Personal best:</h5>
+          <p>{ctx.currentHighscoreEasy}</p>
+        </div>
       </div>
       <div>
         <h2> NORMAL</h2>
-        {scoresNormalList.map((score,index)=>{
-          return(
-            <p key={index}>{index+1}. {score.score} {score.user}</p>
-          )
-        })}
+        <div id="scoresNormal">
+          {scoresNormalList.map((score, index) => {
+            return (
+              <p key={index}>
+                {index + 1}. {score.score} {score.user}
+              </p>
+            );
+          })}
+        </div>
+        <div className="personalBest">
+          <h5>Personal best:</h5>
+          <p>{ctx.currentHighscoreNormal}</p>
+        </div>
       </div>
       <div>
         <h1> HARD</h1>
-        {scoresHardList.map((score,index)=>{
-          return(
-            <p key={index}>{index+1}. {score.score} {score.user}</p>
-          )
-        })}
+        <div id="scoresNormal">
+          {scoresHardList.map((score, index) => {
+            return (
+              <p key={index}>
+                {index + 1}. {score.score} {score.user}
+              </p>
+            );
+          })}
+        </div>
+        <div className="personalBest">
+          <h5>Personal best:</h5>
+          <p>{ctx.currentHighscoreHard}</p>
+        </div>
       </div>
     </div>
   );

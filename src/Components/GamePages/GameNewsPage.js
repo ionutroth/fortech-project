@@ -1,11 +1,22 @@
 import "./GameNewsPage.css";
 import GameNewsArticle from "../GameComponents/GameNewsArticle.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { db } from "../../Firebase.js";
 import { collection, getDocs, orderBy, query } from "@firebase/firestore";
+import Credentials from "../../Context/Credentials";
+import { useNavigate } from "react-router";
 
 const GameNewsPage = () => {
   const [news, setNews] = useState([]);
+  const ctx  = useContext(Credentials)
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if( !ctx.userLoggedIn){
+      navigate("/");
+      alert("Hey!")
+    }
+  },[])
 
   useEffect(() => {
     const FetchNews = async () => {

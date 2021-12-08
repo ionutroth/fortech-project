@@ -12,11 +12,20 @@ import {
   updateDoc,
   doc,
 } from "@firebase/firestore";
+import { useNavigate } from "react-router";
 
 const GameShopPage = () => {
   const ctx = useContext(Credentials);
+  const navigate = useNavigate();
   const [shopItems, setShopItems] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
+
+  useEffect(() => {
+    if (!ctx.userLoggedIn) {
+      navigate("/");
+      alert("Hey!");
+    }
+  }, []);
 
   useEffect(() => {
     let itemsList = [];

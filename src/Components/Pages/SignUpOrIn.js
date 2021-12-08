@@ -228,7 +228,7 @@ const SignUpOrIn = (props) => {
           </div>
           <p className="sliderTitle">Sign in</p>
           <form onSubmit={handleAuthentification}>
-            <label className="fieldName">UserName:</label>
+            <label className="fieldName">Email:</label>
             <input
               className="fieldText"
               type="text"
@@ -236,9 +236,6 @@ const SignUpOrIn = (props) => {
               onChange={(e) => setEmailSignin(e.target.value)}
             />
             <br />
-            <small className="inputWarning" style={{ display: "none" }}>
-              Incorrect credentials
-            </small>
             <br />
             <label className="fieldName">Password:</label>
             <input
@@ -248,9 +245,6 @@ const SignUpOrIn = (props) => {
               onChange={(e) => setPasswordSignin(e.target.value)}
             />
             <br />
-            <small className="inputWarning" style={{ display: "none" }}>
-              Incorrect credentials
-            </small>
             <input type="submit" className="submitButton" />
           </form>
         </div>
@@ -271,7 +265,7 @@ const SignUpOrIn = (props) => {
               id="firstNameSubtext"
               style={{ display: invalidFirstName ? "block" : "none" }}
             >
-              First name can contain only letters.
+              First name can contain only letters and cannot be null.
             </small>
             <br />
             <label className="fieldName">Last name:</label>
@@ -286,7 +280,7 @@ const SignUpOrIn = (props) => {
               className="inputWarning"
               style={{ display: invalidLastName ? "block" : "none" }}
             >
-              Last name can contain only letters.
+              Last name can contain only letters and cannot be null.
             </small>
             <br />
             <label className="fieldName">Email:</label>
@@ -301,7 +295,7 @@ const SignUpOrIn = (props) => {
               className="inputWarning"
               style={{ display: invalidEmail ? "block" : "none" }}
             >
-              First name can contain only letters.
+              Email name can contain only letters and cannot be null.
             </small>
             <br />
             <label className="fieldName">User name:</label>
@@ -316,7 +310,7 @@ const SignUpOrIn = (props) => {
               className="inputWarning"
               style={{ display: invalidUserName ? "block" : "none" }}
             >
-              First name can contain only letters.
+              Username can contain only letters and cannot be null.
             </small>
             <br />
             <label className="fieldName">Password:</label>
@@ -331,7 +325,7 @@ const SignUpOrIn = (props) => {
               className="inputWarning"
               style={{ display: invalidPassword ? "block" : "none" }}
             >
-              Please try another password
+              Please try another password(it cannot be null).
             </small>
             <br />
             <label className="fieldName">Confirm password:</label>

@@ -19,7 +19,6 @@ import ModalPolicy from "./Components/Shared/ModalPolicy.js";
 import ReactDOM from "react-dom";
 import ModalWarning from "./Components/Shared/ModalWarning.js";
 import GameMainMenuPage from "./Components/GamePages/GameMainMenuPage.js";
-import GameSettingsPage from "./Components/GamePages/GameSettingsPage.js";
 import GameInventoryPage from "./Components/GamePages/GameInventoryPage.js";
 import GameShopPage from "./Components/GamePages/GameShopPage.js";
 import GameAccountPage from "./Components/GamePages/GameAccountPage.js";
@@ -124,6 +123,7 @@ function App() {
           leaderboardEasyScore.forEach((doc)=>{
 
             setCurrentHighscoreEasy(doc.data().Score);
+            console.log(doc.data().Score)
           })
           
           setCurrentHighscoreNormal(0);
@@ -157,6 +157,11 @@ function App() {
         UpdateHeroesNumber: (amount) => {
           setCurrentHeroesNumber(currentHeroesNumber + amount);
         },
+        EditAccount: (name,username) =>{
+          setCurrentUser(name);
+          setCurrentUsername(username)
+        },
+        NewHighScore:(score)=>{setCurrentHighscoreEasy(score)} 
       }}
     >
       <Router>
@@ -178,7 +183,6 @@ function App() {
               <Route path="easy" element={<EasyLevel />} />
             </Route>
             <Route path="" element={<Navigate replace to="menu" />} />
-            <Route path="settings" element={<GameSettingsPage />} />
             <Route path="account" element={<GameAccountPage />} />
           </Route>
           <Route exact path="/account" element={<AccountPage />} />
